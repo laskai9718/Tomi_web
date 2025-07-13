@@ -1,0 +1,75 @@
+<!DOCTYPE html>
+<html lang="hu">
+<head>
+    <meta charset="UTF-8">
+    <title>Extra Mérések Dashboard</title>
+    <link rel="stylesheet" href="{{ url_for('static', filename='dash-style.css') }}">
+
+</head>
+<body>
+    <h1>Extra Mérések Dashboard</h1>
+
+    {% with messages = get_flashed_messages() %}
+      {% if messages %}
+        <ul class="flashes">
+          {% for msg in messages %}
+            <li>{{ msg }}</li>
+          {% endfor %}
+        </ul>
+      {% endif %}
+    {% endwith %}
+
+    {% if tasks %}
+    <table>
+      <thead>
+        <tr>
+          <th>Anyag neve</th>
+          <th>Befejezés</th>
+          <th>Teszt típusa</th>
+          <th>Ütemezett dátum</th>
+          <th>Hátralévő idő</th>
+          <th>Művelet</th>
+        </tr>
+      </thead>
+      <tbody>
+        {% for task in tasks %}
+        <tr>
+          <td>{{ task.pasta }}</td>
+          <td>{{ task.finished }}</td>
+          <td>{{ task.test_label }}</td>
+          <td>{{ task.scheduled_date }}</td>
+          <td>{{ task.remaining }}</td>
+          <td>
+            <form action="{{ url_for('complete') }}" method="post">
+              <input type="hidden" name="index" value="{{ task.index }}">
+              <input type="hidden" name="test_label" value="{{ task.test_label }}">
+              <input type="text" name="monogram" placeholder="Monogram" required>
+              <input type="submit" value="Mérés kész">
+            </form>
+          </td>
+        </tr>
+        {% endfor %}
+      </tbody>
+    </table>
+    {% else %}
+      <p style="text-align:center;">Nincs megjeleníthető extra mérés.</p>
+    {% endif %}
+
+    <script>
+function frissitDashboard() {
+    fetch('/ellenoriz')
+        .then(response => response.json())
+        .then(data => {
+            if (data.uj_adat) {
+                location.reload(); // Ha van új adat, frissítjük az oldalt
+            }
+        })
+        .catch(error => console.error("Hiba történt:", error));
+}
+
+// Minden 10 másodpercben ellenőrizzük az új adatokat
+setInterval(frissitDashboard, 10000);
+</script>
+
+</body>
+</html>

@@ -1,0 +1,110 @@
+<!DOCTYPE html>
+<html lang="hu">
+<head>
+    <meta charset="UTF-8">
+    <title>Labor Eredmények</title>
+    <link rel="stylesheet" href="{{ url_for('static', filename='table.css') }}">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+</head>
+<body>
+
+    <h1>📊 Összes Labor Adat</h1>
+    <nav>
+        <a href="/beviteli">📋 Termelési adatbevitel</a>
+        <a href="/labor">🔬 Laboros adatbevitel</a>
+        <a href="/eredmeny">✅ Labor eredmények</a>
+        <a href="/vacuum">🛠️ Vacuum Teszt Rögzítése</a>
+        <a href="/tabla">📊 Összes adat megtekintése</a>
+        <a href="/kiszereles">📦 Kiszerelés Rögzítése</a>
+    </nav>
+
+    <div class="clock-container">
+        <div class="time-row">
+            <div id="day">FRI</div>
+            <div id="clock">00:00:00</div>
+        </div>
+        <div class="labels">
+            <span>Nap</span>
+            <span>Óra</span>
+            <span>Perc</span>
+            <span>Másodperc</span>
+        </div>
+    </div>
+
+    <script>
+        function updateClock() {
+            let now = new Date();
+            let days = ["Vasárnap", "Hétfő", "Kedd", "Szerda", "Csütörtök", "Péntek", "Szombat"];
+            let day = days[now.getDay()];
+            let hours = now.getHours().toString().padStart(2, '0');
+            let minutes = now.getMinutes().toString().padStart(2, '0');
+            let seconds = now.getSeconds().toString().padStart(2, '0');
+            document.getElementById("day").innerText = day;
+            document.getElementById("clock").innerText = `${hours}:${minutes}:${seconds}`;
+        }
+        setInterval(updateClock, 1000); 
+        updateClock();
+    </script>
+
+    <!-- Táblázat konténer, mely vízszintesen görgethetővé teszi a táblázatot -->
+    <div class="table-container">
+        <table>
+            <thead>
+                <tr>
+                    <th>Paszta név</th>
+                    <th>IDH</th>
+                    <th>Sarzs szám A</th>
+                    <th>Sarzs szám B</th>
+                    <th>Érkezési idő</th>
+                    <th>Kezdés idő</th>
+                    <th>Befejezés</th>
+                    <th>Labor idő /perc</th>
+                    <th>Monogram</th>
+                    <th>Állapot</th>
+                    <th>Indok</th>
+                    <th>Vacuum kezdés</th>
+                    <th>Vacuum eredmény</th>
+                    <th>Sorszám</th>
+                    <th>Kiszerelés dátuma</th>
+                    <th>Kiszerelés oka</th>
+                </tr>
+            </thead>
+            <tbody>
+                {% for row in data %}
+                <tr data-status="{{ row['Állapot'] }}">
+                    <td>{{ row["Paszta név"] }}</td>
+                    <td>{{ row["IDH"] }}</td>
+                    <td>{{ row["Sarzs szám A"] }}</td>
+                    <td>{{ row["Sarzs szám B"] }}</td>
+                    <td>{{ row["Érkezési idő"] }}</td>
+                    <td>{{ row["Kezdés idő"] }}</td>
+                    <td>{{ row["Befejezés"] }}</td>
+                    <td>{{ row["Labor idő"] if row["Labor idő"] else "N/A" }}</td>
+                    <td>{{ row["Monogram"] }}</td>
+                    <td>{{ row["Állapot"] }}</td>
+                    <td>{{ row["Indok"] if row["Indok"] else "-" }}</td>
+                    <td>{{ row["Vacuum kezdés"] }}</td>
+                    <td>{{ row["Vacuum eredmény"] }}</td>
+                    <td>{{ row["Sorszám"] }}</td>
+                    <td>{{ row["Kiszerelés dátuma"] }}</td>
+                    <td>{{ row["Kiszerelés oka"] }}</td>
+                </tr>
+                {% endfor %}
+            </tbody>
+        </table>
+    </div>
+
+    <footer>
+        <div class="logo-container">
+            <img src="{{ url_for('static', filename='henkel_logo.png') }}" alt="Henkel Logo">
+        </div>
+    </footer>
+    
+    <script src="{{ url_for('static', filename='animations.js') }}"></script>
+    <div id="error-container" style="display: none; text-align: center;">
+        <img src="{{ url_for('static', filename='error.png') }}" alt="Hiba történt">
+        <p>Valami hiba történt! Próbáld újra később.</p>
+    </div>
+
+</body>
+</html>
