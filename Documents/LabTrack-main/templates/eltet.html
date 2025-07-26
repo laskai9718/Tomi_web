@@ -1,0 +1,136 @@
+<!DOCTYPE html>
+<html lang="hu">
+<head>
+  <meta charset="UTF-8">
+  <title>Eltéti minták</title>
+  <link rel="stylesheet" href="{{ url_for('static', filename='dash-style.css') }}">
+  <script src="{{ url_for('static', filename='app.js') }}" defer></script>
+</head>
+<body>
+
+  {% if current_user.is_authenticated %}
+    <div id="belepes">
+      Bejelentkezve: <strong>{{ current_user.username }}</strong> |
+      <a href="{{ url_for('logout') }}">Kijelentkezés</a> |
+      <a href="{{ url_for('profil_adatok') }}">Adatlapom</a>
+    </div>
+  {% endif %}
+
+  <nav>
+    <a href="{{ url_for('dashboard') }}">Dashboard</a>
+    <a href="{{ url_for('eltet') }}">Eltéti minták</a>
+  </nav>
+
+  <div style="margin: 10px 0;">
+    <button onclick="toggleBepakoloMode()">🧪 Bepakoló mód</button>
+    <span id="bepakolo-state">Kikapcsolva</span>
+  </div>
+
+  <a href="{{ url_for('export_eltet_xlsx') }}">📤 Excel export</a>
+
+  <h1>Eltéti minták</h1>
+
+  {% with messages = get_flashed_messages() %}
+    {% if messages %}
+      <ul class="flashes">
+        {% for msg in messages %}
+          <li>{{ msg }}</li>
+        {% endfor %}
+      </ul>
+    {% endif %}
+  {% endwith %}
+
+  <div id="kereso">
+    <label>Keresés sarzsszám alapján:</label>
+    <input type="text" id="search-bar" placeholder="Pl.: GEN12345">
+    <button onclick="searchSample()">🔍 Keresés</button>
+  </div>
+
+  <div id="box-details-target">
+    <h3>Kiválasztott doboz adatai</h3>
+    <div id="box-details-meta"></div>
+    <div id="box-details-content"></div>
+  </div>
+
+  {% for raklap, boxes in structure.items() %}
+    <div class="rack">
+      <h2>{{ raklap }} – {{ boxes|length }} doboz</h2>
+
+      <div class="box-grid">
+        {% for box in boxes %}
+          {% set box_number = loop.index %}
+          {% set item_count = box['items']|length %}
+          {% set verf_count = box['items']|selectattr("verified")|list|length %}
+
+          <div class="
+                 box {{ box.status }}
+                 {% if box.ready %}ready{% endif %}
+                 {% if item_count > 0 %}has-item{% endif %}
+                 {% if verf_count > 0 %}verified{% endif %}"
+               data-mat="{{ raklap }}"
+               data-box="{{ box_number }}"
+               onclick="handleClick(this, event)">
+            Doboz #{{ box_number }}
+            {% if box.ready %}✅{% endif %}
+            {% if verf_count > 0 %}
+              <span class="verf-badge">✔️{{ verf_count }}</span>
+            {% endif %}
+          </div>
+        {% endfor %}
+      </div>
+
+      {% for box in boxes %}
+        {% set box_number = loop.index %}
+        <div id="details-{{ raklap|replace(' ', '_') }}-{{ box_number }}"
+             class="details-box"
+             style="display:none;">
+          
+          {% if box['items'] %}
+            {% for item in box['items'] %}
+              <div class="sample-row {% if item.reklamacio_datum %}removed{% endif %}">
+                <p>
+                  Sarzsszám: <strong>{{ item.sarzs_szam_A or item.sarzs_szam_B }}</strong>
+                  {% if item.reklamacio_datum %}
+                    <span class="badge removed-badge">Reklamálva</span>
+                  {% endif %}
+                </p>
+                <p>Anyag: {{ item.paszta_nev }}</p>
+                <p>Befejezés: {{ item.befejezes.strftime('%Y-%m-%d') }}</p>
+                <p>Lejárat: {{ item.lejar.strftime('%Y-%m-%d') }}</p>
+
+                {% if not item.reklamacio_datum %}
+                  <textarea id="comment-{{ item.id }}"
+                            placeholder="Megjegyzés"
+                            rows="2"></textarea>
+                  <button class="btn-complaint"
+                          onclick="markComplaint('{{ item.id }}', '{{ item.id }}')">
+                    🚫 Reklamáció
+                  </button>
+                {% else %}
+                  <p><em>{{ item.reklamacio_megjegyzes }}</em></p>
+                {% endif %}
+
+                <hr>
+              </div>
+            {% endfor %}
+
+            <div class="scan-controls" style="display:none;">
+              <label>Sarzsszám beolvasása:</label>
+              <input type="text" id="scan-input" placeholder="Pl.: GEN12345">
+              <button type="button"
+                      onclick="saveScan('{{ raklap }}', '{{ box_number }}')">
+                💾 Mentés
+              </button>
+              <button type="button" onclick="closeDetails()">❌ Mégse</button>
+            </div>
+
+          {% else %}
+            <em>Ez a doboz üres.</em>
+          {% endif %}
+        </div>
+      {% endfor %}
+    </div>
+  {% endfor %}
+
+</body>
+</html>

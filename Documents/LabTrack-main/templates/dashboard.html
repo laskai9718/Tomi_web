@@ -1,0 +1,126 @@
+<!DOCTYPE html>
+<html lang="hu">
+<head>
+  <meta charset="UTF-8">
+  <title>Extra Mérések Dashboard</title>
+ <link rel="stylesheet" href="{{ url_for('static', filename='dash-style.css') }}">
+   <script src="{{ url_for('static', filename='app.js') }}" defer></script>
+
+</head>
+<body>
+      {% if current_user.is_authenticated %}
+<div id="belepes">
+  <img src="{{ url_for('static', filename='icons/account.png') }}" alt="teremlési icon" width="15" height="15"> Bejelentkezve: <strong>{{ current_user.username }}</strong> |
+  <a href="{{ url_for('logout') }}"><img src="{{ url_for('static', filename='icons/exit.png') }}" alt="teremlési icon" width="15" height="15"> Kijelentkezés</a>
+  <a href="{{ url_for('profil_adatok') }}"><img src="{{ url_for('static', filename='icons/user.png') }}" alt="teremlési icon" width="15" height="15">Adatlapom</a>
+</div>
+{% endif %}
+
+
+  <nav>
+    <a href="{{ url_for('dashboard') }}"><img src="{{ url_for('static', filename='icons/data-analysis.png') }}" alt="teremlési icon" width="20" height="20">Dashboard</a>
+    <a href="{{ url_for('eltet') }}"><img src="{{ url_for('static', filename='icons/tube.png') }}" alt="teremlési icon" width="20" height="20">Eltéti minták</a>
+  </nav>
+
+
+  <h1><img src="{{ url_for('static', filename='icons/data-analysis.png') }}" alt="teremlési icon" width="40" height="40">Extra Mérések Dashboard</h1>
+
+  <a href="{{ url_for('export_dashboard_xlsx') }}" class="btn-export">
+    <img src="{{ url_for('static', filename='icons/printer.png') }}" alt="printer ikon" width="24" height="24"> Excel export
+  </a>
+
+
+  {% with messages = get_flashed_messages() %}
+    {% if messages %}
+      <ul class="flashes">
+        {% for msg in messages %}
+          <li>{{ msg }}</li>
+        {% endfor %}
+      </ul>
+    {% endif %}
+  {% endwith %}
+
+  {% if nok_darab > 0 %}
+  <div class="alert alert-warning">
+    ⚠️ Figyelem: {{ nok_darab }} minta <strong>NOK állapotú</strong>,
+    ezért nem szerepel az extra mérések listáján, viszont archiválásra került.
+  </div>
+  {% endif %}
+
+  {% if tasks %}
+  <table>
+    <thead>
+      <tr>
+        <th>Anyag neve</th>
+        <th>Befejezés</th>
+        <th>Teszt típusa</th>
+        <th>Ütemezett dátum</th>
+        <th>Hátralévő idő</th>
+        <th>Művelet</th>
+      </tr>
+    </thead>
+    <tbody>
+      {% for task in tasks %}
+      <tr>
+        <td>{{ task.pasta }}</td>
+        <td>{{ task.befejezes }}</td>
+        <td>{{ task.test_label }}</td>
+        <td>{{ task.scheduled_date }}</td>
+        <td data-scheduled="{{ task.scheduled_date }}"></td>
+        <td>
+          <form action="{{ url_for('complete') }}" method="post">
+            <input type="hidden" name="id" value="{{ task.id }}">
+            <input type="hidden" name="test_label" value="{{ task.test_label }}">
+            <input type="submit" value="Mérés kész">
+          </form>
+        </td>
+      </tr>
+      {% endfor %}
+    </tbody>
+  </table>
+  {% else %}
+    <p style="text-align:center;">Nincs megjeleníthető extra mérés.</p>
+  {% endif %}
+
+  <script>
+    function frissitDashboard() {
+      fetch('/ellenoriz')
+        .then(res => res.json())
+        .then(data => {
+          if (data.uj_adat) location.reload();
+        })
+        .catch(err => console.error(err));
+    }
+    setInterval(frissitDashboard, 10000);
+  </script>
+  <script>
+function pad(n) {
+  return n.toString().padStart(2, '0');
+}
+
+function updateCountdowns() {
+  const now = new Date();
+  document.querySelectorAll('[data-scheduled]').forEach(td => {
+    const targetStr = td.getAttribute('data-scheduled');
+    const target = new Date(targetStr.replace(" ", "T")); // biztosan értelmezhető formátum
+
+    const diff = target - now;
+
+    if (diff <= 0) {
+    td.textContent = "❌ Idő lejárt";
+    td.classList.add("lejart-cell");
+    } else {
+      const hours = Math.floor(diff / 1000 / 60 / 60);
+      const minutes = Math.floor((diff / 1000 / 60) % 60);
+      const seconds = Math.floor((diff / 1000) % 60);
+      td.textContent = `${pad(hours)}:${pad(minutes)}:${pad(seconds)}`;
+    }
+  });
+}
+
+setInterval(updateCountdowns, 1000);
+updateCountdowns();
+</script>
+
+</body>
+</html>

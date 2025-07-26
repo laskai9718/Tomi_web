@@ -1,0 +1,98 @@
+<!DOCTYPE html>
+<html lang="hu">
+<head>
+    <meta charset="UTF-8">
+    <title>Kiszerelés</title>
+    <link rel="stylesheet" href="{{ url_for('static', filename='mind-table.css') }}">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+</head>
+<body>
+    {% if current_user.is_authenticated %}
+<div id="belepes">
+  <img src="{{ url_for('static', filename='icons/account.png') }}" alt="teremlési icon" width="15" height="15"> Bejelentkezve: <strong>{{ current_user.username }}</strong> |
+  <a href="{{ url_for('logout') }}"><img src="{{ url_for('static', filename='icons/exit.png') }}" alt="teremlési icon" width="15" height="15"> Kijelentkezés</a>
+  <a href="{{ url_for('profil_adatok') }}"><img src="{{ url_for('static', filename='icons/user.png') }}" alt="teremlési icon" width="15" height="15">Adatlapom</a>
+</div>
+{% endif %}
+
+
+    <h1><img src="{{ url_for('static', filename='icons/package-box.png') }}" alt="box icon" width="40" height="40"> Kiszerelés Rögzítése</h1>
+    <nav>
+        <a href="/beviteli"><img src="{{ url_for('static', filename='icons/timeline.png') }}" alt="teremlési icon" width="24" height="24"> Termelési adatbevitel</a>
+        <a href="/labor"><img src="{{ url_for('static', filename='icons/microscope.png') }}" alt="labor icon" width="24" height="24"> Labor adatbevitel</a>
+        <a href="/eredmeny"><img src="{{ url_for('static', filename='icons/evaluation.png') }}" alt="labor eredmények icon" width="24" height="24"> Labor eredmények</a>
+        <a href="/vacuum"><img src="{{ url_for('static', filename='icons/muffin.png') }}" alt="vacuum icon" width="24" height="24"> Vacuum Teszt Rögzítése</a>
+        <a href="/tabla"><img src="{{ url_for('static', filename='icons/monitor.png') }}" alt="összes eredmény icon" width="24" height="24"> Összes adat megtekintése</a>
+        <a href="/kiszereles"><img src="{{ url_for('static', filename='icons/package-box.png') }}" alt="box icon" width="24" height="24"> Kiszerelés Rögzítése</a>
+    </nav>
+    
+    <div class="clock-container">
+        <div class="time-row">
+            <div id="day">FRI</div>
+            <div id="clock">00:00:00</div>
+        </div>
+        <div class="labels">
+            <span>Nap</span>
+            <span>Óra</span>
+            <span>Perc</span>
+            <span>Másodperc</span>
+        </div>
+    </div>
+
+    <script>
+        function updateClock() {
+            let now = new Date();
+            let days = ["Vasárnap", "Hétfő", "Kedd", "Szerda", "Csütörtök", "Péntek", "Szombat"];
+            let day = days[now.getDay()];
+            let hours = now.getHours().toString().padStart(2, '0');
+            let minutes = now.getMinutes().toString().padStart(2, '0');
+            let seconds = now.getSeconds().toString().padStart(2, '0');
+            document.getElementById("day").innerText = day;
+            document.getElementById("clock").innerText = `${hours}:${minutes}:${seconds}`;
+        }
+        setInterval(updateClock, 1000);
+        updateClock();
+    </script>
+
+    <table>
+        <thead>
+            <tr>
+                <th>Paszta</th>
+                <th>Sarzs szám A</th>
+                <th>Sarzs szám B</th>
+                <th>Állapot</th>
+                <th>Művelet</th>
+            </tr>
+        </thead>
+        <tbody>
+            {% for item in data %}
+            <tr>
+                <td>{{ item['paszta_nev'] }}</td>
+                <td>{{ item['sarzs_szam_A'] }}</td>
+                <td>{{ item['sarzs_szam_B'] }}</td>
+                <td>{{ item['allapot'] }}</td>
+                <td>
+                    <form method="POST">
+                        <input type="hidden" name="sarzs_szam_A" value="{{ item['sarzs_szam_A'] }}">
+                        <button type="submit"><img src="{{ url_for('static', filename='icons/check-mark.png') }}" alt="teremlési icon" width="20" height="20"> Kiszerelve</button>
+                    </form>
+                </td>
+            </tr>
+            {% endfor %}
+        </tbody>
+    </table>
+
+    <footer>
+        <div class="logo-container">
+            <img src="{{ url_for('static', filename='henkel_logo.png') }}" alt="Henkel Logo">
+        </div>
+    </footer>
+
+    <script src="{{ url_for('static', filename='animations.js') }}"></script>
+    <div id="error-container" style="display: none; text-align: center;">
+        <img src="{{ url_for('static', filename='error.png') }}" alt="Hiba történt">
+        <p>Valami hiba történt! Próbáld újra később.</p>
+    </div>
+    
+</body>
+</html>

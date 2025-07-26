@@ -1,0 +1,19 @@
+<!DOCTYPE html>
+<html lang="hu">
+<head>
+    <meta charset="UTF-8">
+    <title>Adatlapom</title>
+    <link rel="stylesheet" href="{{ url_for('static', filename='mind-table.css') }}">
+</head>
+<body>
+<div class="form-container">
+  <h1><img src="{{ url_for('static', filename='icons/user.png') }}" alt="teremlési icon" width="45" height="45"> Profilom</h1>
+  <p><strong>Felhasználónév:</strong> {{ user.username }}</p>
+  <p><strong>Email:</strong> {{ user.email }}</p>
+  <p><strong>Regisztráció ID:</strong> {{ user.id }}</p>
+  <nav>
+    <a href="{{ url_for('logout') }}"><img src="{{ url_for('static', filename='icons/exit.png') }}" alt="teremlési icon" width="24" height="24"> Kijelentkezés</a>
+    <a href="{{ url_for('index') }}"><img src="{{ url_for('static', filename='icons/arrow.png') }}" alt="teremlési icon" width="24" height="24"> Vissza</a>
+</div>
+</body>
+</html>

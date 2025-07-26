@@ -1,0 +1,372 @@
+@import url('https://fonts.googleapis.com/css2?family=Inter:wght@400;700&display=swap');
+
+#belepes {
+    background-color: #f4f4f4;
+    padding: 8px 16px;
+    font-size: 0.95em;
+    text-align: right;
+    border-bottom: 1px solid #ff0000;
+    color: #ff0000;
+    font-family: 'Inter', sans-serif;
+}
+
+#belepes a {
+    color: #000000;
+    text-decoration: none;
+    margin-left: 10px;
+}
+
+#belepes a:hover {
+    text-decoration: underline;
+}
+
+#login-container {
+    background: rgb(255, 255, 255, 0.1);/* Glassmorphism hatás */
+    padding: 30px;
+    border-radius: 15px;
+    box-shadow: 0px 4px 15px rgba(0, 0, 0, 0.3);
+    text-align: center;
+    width: 90%;
+    max-width: 450px;
+    justify-content: center; /* Vízszintesen középre */
+    align-items: center; /* Függőlegesen középre */
+    display: grid;
+    place-items: center; /* Teljes középre igazítás */
+    margin: auto; /* Középre helyezés */
+
+    box-shadow: 0px 5px 15px rgba(255, 0, 0, 0.5); /* Finomabb árnyék */
+    border: 2px solid rgba(255, 0, 0, 0.5); /* Finomabb üveg hatás */
+}
+.form-container input,
+#login-container input {
+  width: 100%;
+  max-width: 100%;
+  box-sizing: border-box;
+  padding: 15px;
+  margin-bottom: 15px;
+  border-radius: 8px;
+  font-size: 16px;
+  background-color: #f4f4f4;
+  border: 1px solid #ccc;
+  color: #000;
+}
+
+#login-container a {
+    color: #000000;
+    text-decoration: none;
+    margin-left: 10px;
+}
+
+#login-container  a:hover {
+    text-decoration: underline;
+}
+
+/* Háttér beállítása */
+body {
+
+    background: rgb(255, 255, 255); /* Egyszerű fehér háttér */
+    backdrop-filter: blur(10px); /* Üveghatás */
+    color: #000000; /* Kontrasztos fehér szöveg */
+    font-family: 'Inter', sans-serif;
+
+}
+
+.page {
+    transform: scale(0.8);
+    opacity: 0;
+    transition: all 0.5s ease-in-out;
+}
+
+.page.active {
+    transform: scale(1);
+    opacity: 1;
+}
+
+
+
+/* Navigációs sáv */
+nav {
+    background: rgb(255, 255, 255);/* Glassmorphism hatás */
+    padding: 15px;
+    border-radius: 25px; /* Kevésbé agresszív lekerekítés */
+    width: 90%;
+    margin: 20px auto;
+    display: flex;
+    justify-content: space-around;
+    align-items: center;
+    gap: 8px;
+    backdrop-filter: blur(10px); /* Üveghatás */
+    box-shadow: 0px 5px 15px rgba(255, 0, 0, 0.5); /* Finomabb árnyék */
+    border: 2px solid rgba(255, 0, 0, 0.5); /* Finomabb üveg hatás */
+}
+
+/* Linkek */
+nav a {
+    background: rgb(255, 255, 255, 0.2); /* Finomabb átlátszóság */
+    color: #000000;
+    font-weight: bold;
+    text-decoration: none;
+    padding: 14px 20px;
+    border-radius: 20px;
+    transition: all 0.3s ease-in-out;
+    font-size: 18px;
+    box-shadow: 0px 3px 8px rgba(255, 255, 255, 0.1);
+    border: 1px solid rgb(255, 0, 0);
+    text-align: center;
+    flex-grow: 1;
+    height: auto; /* Reszponzív magasság */
+    min-width: 120px; /* Gombok egységes méretezése */
+    font-family: 'Inter', sans-serif;
+}
+
+/* Hover állapot */
+nav a:hover {
+    background: rgb(255, 0, 0); /* Finom világosítás */
+    color: #ffffff;
+    transform: translateY(-3px); /* Kiemelés */
+    box-shadow: 0px 6px 12px rgba(255, 255, 255, 0.3);
+}
+
+/* Aktív állapot */
+nav a.active {
+    background: rgba(255, 255, 255, 0.3); /* Erősebb üveghatás */
+    color: #333;
+    font-weight: bold;
+    border: 2px solid #ffffff;
+}
+
+
+h1 {
+    font-family: 'Inter', sans-serif;
+    font-weight: bold;
+    backdrop-filter: blur(10px); /* Üveghatás */
+    color: rgb(255, 0, 0); /* Finomabb fehér szöveg */
+    padding: 10px 15px;
+    border-radius: 8px; /* Lekerekítés */
+    font-size: 50px; /* Nagyobb cím */
+    margin-bottom: 20px; /* Térköz a cím alatt */
+    text-align: center; /* Középre igazítás */
+    line-height: 60px; /* Középre igazítás */
+}
+/* Űrlap konténer */
+.form-container {
+    background: rgb(255, 255, 255, 0.1);/* Glassmorphism hatás */
+    padding: 30px;
+    border-radius: 15px;
+    box-shadow: 0px 4px 15px rgba(0, 0, 0, 0.3);
+    text-align: center;
+    width: 90%;
+    max-width: 450px;
+    justify-content: center; /* Vízszintesen középre */
+    align-items: center; /* Függőlegesen középre */
+    display: grid;
+    place-items: center; /* Teljes középre igazítás */
+    margin: auto; /* Középre helyezés */
+
+    box-shadow: 0px 5px 15px rgba(255, 0, 0, 0.5); /* Finomabb árnyék */
+    border: 2px solid rgba(255, 0, 0, 0.5); /* Finomabb üveg hatás */
+}
+/* Űrlap címkék */
+label {
+    display: block;
+    font-size: 20px;
+    margin-bottom: 5px;
+    color: #000000;
+    font-family: 'Inter', sans-serif;
+}
+
+/* Mezők */
+input, select {
+    width: 100%; /* Teljes szélesség */
+    padding: 15px; /* Kényelmesebb méret */
+    border-radius: 8px;
+    border: 2px solid #ccc;
+    font-size: 20px; /* Nagyobb betűméret */
+    margin-bottom: 20px; /* Tágasabb elrendezés */
+    background-color: #f4f4f4;
+    color: #000000;
+}
+
+/* Gomb */
+button {
+    background: rgba(255, 255, 255, 0.2); /* Finomabb átlátszóság */
+    color: rgb(0, 0, 0);
+    font-size: 18px;
+    font-weight: bold;
+    border: 2px solid rgb(255, 0, 0);
+    padding: 12px 20px;
+    border-radius: 30px;
+    cursor: pointer;
+    transition: all 0.3s ease-in-out;
+    box-shadow: 0px 4px 10px rgba(0, 0, 0, 0.3);
+}
+
+/* Hover állapot */
+button:hover {
+    transform: scale(0.95); /* Enyhén kicsinyít */
+    box-shadow: 0px 6px 15px rgba(0, 0, 0, 0.3);
+}
+
+/* Gomb aktív */
+button:active {
+    transform: scale(0.70); /* Enyhén kicsinyít */
+}
+
+
+/* Óra konténer */
+.clock-container {
+    background: rgb(250, 255, 255, 0.1);/* Finomabb átlátszóság */
+    color: #050505;
+    padding: 30px;
+    border-radius: 25px; /* Kevésbé éles szélek */
+    box-shadow: 0px 5px 15px rgba(255, 0, 0, 0.5); /* Finomabb árnyék */
+    border: 2px solid rgba(255, 0, 0, 0.5); /* Finomabb üveg hatás */
+    backdrop-filter: blur(12px); /* Finom háttéreffekt */
+    text-align: center;
+    width: 450px; /* Kicsit kompaktabb méret */
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    margin: auto;
+    margin-top: 20px;
+    margin-bottom: 20px;
+    transition: all 0.3s ease-in-out;
+    font-family: 'Inter', sans-serif;
+}
+
+/* Idő és nap egy sorban */
+.time-row {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    gap: 20px;
+}
+
+/* Nap kijelzése */
+#day {
+    font-size: 38px;
+    font-weight: bold;
+    text-transform: uppercase;
+    transition: all 0.3s ease-in-out;
+}
+
+/* Idő kijelzése */
+#clock {
+    font-size: 48px;
+    font-weight: bold;
+    letter-spacing: 3px;
+    transition: all 0.3s ease-in-out;
+}
+
+/* Halvány jelölések */
+.labels {
+    font-size: 18px;
+    color: rgb(0, 0, 0); /* Finomabb fehér szöveg */ 
+    margin-top: 8px;
+    display: grid;
+    grid-template-columns: repeat(4, 1fr); /* 4 egyenlő oszlop */
+    text-align: center; /* Középre igazítás */
+    width: 80%;
+    font-family: 'Inter', sans-serif;
+}
+
+
+/* Hover-effekt (Finom kiemelés) */
+.clock-container:hover {
+    transform: scale(1.05); /* Enyhén nagyítódik */
+    box-shadow: 0px 8px 25px rgba(255, 255, 255, 0.4);
+}
+
+.logo-container {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    padding: 20px;
+}
+
+.logo-container img {
+    max-width: 150px; /* Átméretezés, ha szükséges */
+    height: auto;
+}
+#error-container {
+    position: fixed;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+    background: rgba(255, 0, 0, 0.1);
+    padding: 20px;
+    border-radius: 10px;
+    text-align: center;
+}
+#error-container img {
+    width: 100px;
+    height: auto;
+}
+
+/* Alap táblázat méret */
+table {
+    width: 80%;
+    border-collapse: collapse;
+    margin: 20px 0;
+    font-size: 18px;
+    text-align: left;
+    max-width: 900px; /* Max méret, hogy ne legyen túl széles */
+    margin: 20px auto; /* Középre igazítás */
+    border: 2px solid rgba(255, 0, 0, 0.5); /* Finomabb üveg hatás */
+}
+
+
+/* Fejléc (th) */
+th {
+    background-color: rgb(0, 0, 0, 0.2);
+    color: rgb(0, 0, 0);
+    font-weight: bold;
+    padding: 12px; /* Kicsit nagyobb padding a TV olvashatóság miatt */
+    text-align: center;
+    border: 2px solid rgba(255, 0, 0, 0.5); /* Finomabb üveg hatás */
+    font-size: 20px;
+    text-transform: uppercase;
+}
+
+/* Adatcellák (td) */
+td {
+    padding: 12px;
+    text-align: center;
+    border: 1px solid rgba(255, 0, 0, 0.5); /* Finomabb üveg hatás */
+    font-size: 18px;
+    color: #000;
+    transition: all 0.3s ease-in-out;
+    max-width: 100px; /* Minden cella maximális mérete */
+    overflow: hidden;
+    white-space: nowrap;
+    text-overflow: ellipsis; /* Ha túl hosszú, akkor "..." lesz */
+}
+
+/* Oszlopok stabilizálása, hogy ne lógjanak ki */
+td:nth-child(4), td:nth-child(5), td:nth-child(6) { /* Vacuum eredmények, Sorszám, Kiszerelés dátum */
+    max-width: 160px;
+    font-size: 16px;
+}
+
+/* Sorok színezése az állapot alapján */
+tr[data-status="Folyamatban..."] {
+    background-color: #fff3a3;
+    transition: background 0.3s ease-in-out;
+}
+
+tr[data-status="OK"] {
+    background-color: #b3e2b5;
+    transition: background 0.3s ease-in-out;
+}
+
+tr[data-status="NOK"] {
+    background-color: #ffafaf;
+    transition: background 0.3s ease-in-out;
+}
+.flash-container { margin: 1em 0; }
+.alert { padding: .5em 1em; border-radius: 4px; margin-bottom: .5em; }
+/* színek */
+.alert-danger   { background: #f8d7da; color: #721c24; }
+.alert-info     { background: #d1ecf1; color: #0c5460; }
+.alert-success  { background: #d4edda; color: #155724; }
+.alert-secondary { background: #e2e3e5; color: #383d41; }

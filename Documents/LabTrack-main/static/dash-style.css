@@ -1,0 +1,306 @@
+@import url('https://fonts.googleapis.com/css2?family=Inter:wght@400;700&display=swap');
+#belepes {
+    background-color: #f4f4f4;
+    padding: 8px 16px;
+    font-size: 0.95em;
+    text-align: right;
+    border-bottom: 1px solid #ff0000;
+    color: #ff0000;
+    font-family: 'Inter', sans-serif;
+}
+
+#belepes a {
+    color: #000000;
+    text-decoration: none;
+    margin-left: 10px;
+}
+
+#belepes a:hover {
+    text-decoration: underline;
+}
+
+body {
+          font-family: 'Inter', sans-serif;
+          background-color: #f5f5f5;
+          margin: 0;
+          padding: 20px;
+      }
+      h1 {
+        color: red;
+          text-align: center;
+          margin-bottom: 20px;
+      }
+      .flashes {
+          list-style: none;
+          padding: 10px;
+          color: red;
+          text-align: center;
+      }
+      table {
+          width: 90%;
+          max-width: 1200px;
+          margin: auto;
+          border-collapse: collapse;
+          box-shadow: 0px 4px 10px rgba(0, 0, 0, 0.1);
+      }
+      th, td {
+          padding: 12px;
+          border: 1px solid #ddd;
+          text-align: center;
+      }
+      th { 
+          background-color: #eeeeee; 
+          text-transform: uppercase; 
+      }
+      form { 
+          display: inline; 
+      }
+      input[type="text"] {
+          padding: 6px;
+          margin-right: 5px;
+      }
+      input[type="submit"] {
+          padding: 6px 10px;
+          background-color: #ff0000;
+          color: #fff;
+          border: none;
+          cursor: pointer;
+      }
+.alert-warning {
+  background-color: #fff3cd;
+  color: #856404;
+  padding: 12px;
+  border-radius: 5px;
+  border: 1px solid #ffeeba;
+  margin: 1em 0;
+}
+    .rack { display: inline-block; vertical-align: top; margin: 1em; }
+    .rack h2 { text-align: center; }
+    .box-grid { display: grid; grid-template-columns: repeat(8, 1fr); gap: 4px; }
+
+/* NAVIGÁCIÓ */
+nav {
+  display: flex;
+  justify-content: center;
+  background: #fff;
+  border-bottom: 2px solid #ff0000;
+  padding: 10px 0;
+  margin-bottom: 20px;
+}
+
+nav a {
+  color: #ff0000;
+  text-decoration: none;
+  font-weight: 700;
+  margin: 0 15px;
+  font-family: 'Inter', sans-serif;
+}
+
+nav a:hover {
+  text-decoration: underline;
+}
+.rack {
+  display: inline-block;
+  vertical-align: top;
+  margin: 1.5em;
+  padding: 0.5em;
+  border: 2px solid #ccc;
+  border-radius: 6px;
+  background-color: #fafafa;
+  box-shadow: 2px 2px 5px rgba(0,0,0,0.1);
+}
+
+.rack h2 {
+  text-align: center;
+  margin-bottom: 0.5em;
+  font-size: 1.1em;
+  color: #444;
+}
+
+
+.btn-export {
+  display: inline-block;
+  padding: 8px 16px;
+  background: #007bff;
+  color: white;
+  text-decoration: none;
+  border-radius: 6px;
+  font-weight: bold;
+  margin: 10px 0;
+}
+
+.btn-export:hover {
+  background: #0056b3;
+}
+input[type="submit"] {
+  padding: 6px 12px;
+  background-color: #28a745;
+  border: none;
+  border-radius: 4px;
+  color: white;
+  font-weight: bold;
+  cursor: pointer;
+}
+
+input[type="submit"]:hover {
+  background-color: #218838;
+}
+.box {
+  width: 40px;           /* vagy 50px, ha kevés a hely */
+  height: 40px;
+  padding: 0;            /* ne használj extra paddinget itt */
+  font-size: 1em;        /* olvashatóbb karakterekhez */
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  border-radius: 6px;
+  background-color: #eaeaea;
+  text-align: center;
+  cursor: pointer;
+  transition: transform 0.2s ease;
+  overflow: hidden;      /* ha pipát ikonként adod hozzá */
+  position: relative;    /* ha ráteszel overlay badge-et */
+}
+
+
+/* 🔄 Frissített doboz stílusok – csak a boxok és kapcsolódó elemek */
+
+/* Dobozrács */
+.box-grid {
+  display: grid;
+  grid-template-columns: repeat(8, 1fr);
+  gap: 12px;
+  margin-top: 10px;
+}
+
+/* Alap dobozstílus */
+.box {
+  min-width: 80px;
+  min-height: 80px;
+  padding: 6px;
+  font-size: 0.85em;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  border-radius: 6px;
+  border: 2px solid #ccc;
+  background-color: #f7f7f7;
+  text-align: center;
+  cursor: pointer;
+  transition: all 0.2s ease;
+  box-shadow: 0 2px 4px rgba(0,0,0,0.1);
+  position: relative;
+  overflow: hidden;
+}
+
+.box:hover {
+  transform: scale(1.05);
+  box-shadow: 0 0 8px rgba(0,0,0,0.15);
+}
+
+/* Státusz színek */
+.box.expired  { background-color: #ffe5e5; border-color: #cc0000; }
+.box.soon     { background-color: #fff9cc; border-color: #f0ad4e; }
+.box.ok       { background-color: #e0ffe0; border-color: #28a745; }
+.box.empty    { background-color: #f0f0f0; border-color: #bbb; }
+
+/* Aktív és kijelölt állapot */
+.box.clicked     { animation: flash 0.3s ease; }
+.box.active      { background-color: #cce5ff; border: 2px solid #339af0; }
+.box.has-item    { border: 2px solid #28a745; background-color: #e6ffed; }
+.box.verified    { box-shadow: 0 0 5px #007bff; }
+
+/* Animáció a kattintásra */
+@keyframes flash {
+  0%   { background-color: #fffcb0; }
+  100% { background-color: inherit; }
+}
+
+/* Részletbox megnyitásakor */
+.details-box {
+  max-height: 0;
+  opacity: 0;
+  overflow: hidden;
+  transition: max-height 0.3s ease, opacity 0.3s ease;
+  grid-column: 1 / -1;
+}
+.details-box.open {
+  max-height: 300px;
+  opacity: 1;
+}
+.details-box ul {
+  padding-left: 20px;
+}
+
+/* Dobozállapot badge-ek */
+.verf-badge {
+  margin-left: 5px;
+  font-size: 0.8em;
+  color: #007bff;
+}
+.item-verf {
+  color: green;
+  margin-left: 8px;
+}
+.item-unverf {
+  color: red;
+  margin-left: 8px;
+}
+
+/* Reklamált minták */
+.sample-row.removed {
+  opacity: 0.6;
+  text-decoration: line-through;
+}
+
+.badge.removed-badge {
+  background-color: #c0392b;
+  color: #fff;
+  padding: 2px 6px;
+  border-radius: 3px;
+  margin-top: 4px;
+  font-size: 0.75em;
+}
+
+/* Reklamáció gomb */
+.btn-complaint {
+  background-color: #e74c3c;
+  color: #fff;
+  border: none;
+  padding: 4px 8px;
+  cursor: pointer;
+  margin-top: 4px;
+  border-radius: 4px;
+  font-size: 0.85em;
+}
+
+/* Részletes doboz konténer */
+.details-box-area {
+  margin-top: 40px;
+  background-color: #fafafa;
+  border: 1px solid #ccc;
+  padding: 15px;
+  border-radius: 6px;
+}
+
+#box-details-meta {
+  font-size: 14px;
+  margin-bottom: 10px;
+  color: #555;
+}
+
+.details-box-area h3 {
+  margin-top: 0;
+}
+
+#box-details-content ul {
+  list-style: disc;
+  padding-left: 20px;
+}
+.lejart-cell {
+  background-color: #ffe5e5;
+  color: #b30000;
+  font-weight: bold;
+  border: 1px solid #b30000;
+}

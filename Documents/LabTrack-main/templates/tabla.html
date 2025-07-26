@@ -1,0 +1,118 @@
+<!DOCTYPE html>
+<html lang="hu">
+<head>
+    <meta charset="UTF-8">
+    <title>Labor Eredmények</title>
+    <link rel="stylesheet" href="{{ url_for('static', filename='table.css') }}">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+</head>
+<body>
+
+    <h1><img src="{{ url_for('static', filename='icons/monitor.png') }}" alt="összes eredmény icon" width="40" height="40"> Összes Labor Adat</h1>
+            <!-- ide kerül a flash-üzenetek megjelenítése -->
+
+    <nav>
+        <a href="/beviteli"><img src="{{ url_for('static', filename='icons/timeline.png') }}" alt="teremlési icon" width="24" height="24"> Termelési adatbevitel</a>
+        <a href="/labor"><img src="{{ url_for('static', filename='icons/microscope.png') }}" alt="labor icon" width="24" height="24"> Labor adatbevitel</a>
+        <a href="/eredmeny"><img src="{{ url_for('static', filename='icons/evaluation.png') }}" alt="labor eredmények icon" width="24" height="24"> Labor eredmények</a>
+        <a href="/vacuum"><img src="{{ url_for('static', filename='icons/muffin.png') }}" alt="vacuum icon" width="24" height="24"> Vacuum Teszt Rögzítése</a>
+        <a href="/tabla"><img src="{{ url_for('static', filename='icons/monitor.png') }}" alt="összes eredmény icon" width="24" height="24"> Összes adat megtekintése</a>
+        <a href="/kiszereles"><img src="{{ url_for('static', filename='icons/package-box.png') }}" alt="box icon" width="24" height="24"> Kiszerelés Rögzítése</a>
+    </nav>
+    
+    <div class="clock-container">
+        <div class="time-row">
+            <div id="day">FRI</div>
+            <div id="clock">00:00:00</div>
+        </div>
+        <div class="labels">
+            <span>Nap</span>
+            <span>Óra</span>
+            <span>Perc</span>
+            <span>Másodperc</span>
+        </div>
+    </div>
+
+    <script>
+        function updateClock() {
+            let now = new Date();
+            let days = ["Vasárnap", "Hétfő", "Kedd", "Szerda", "Csütörtök", "Péntek", "Szombat"];
+            let day = days[now.getDay()];
+            let hours = now.getHours().toString().padStart(2, '0');
+            let minutes = now.getMinutes().toString().padStart(2, '0');
+            let seconds = now.getSeconds().toString().padStart(2, '0');
+            document.getElementById("day").innerText = day;
+            document.getElementById("clock").innerText = `${hours}:${minutes}:${seconds}`;
+        }
+        setInterval(updateClock, 1000); 
+        updateClock();
+    </script>
+
+    <!-- Táblázat konténer, mely vízszintesen görgethetővé teszi a táblázatot -->
+    <div class="table-container">
+        <table>
+            <thead>
+                <tr>
+                    <th>Paszta név</th>
+                    <th>IDH</th>
+                    <th>Sarzs szám A</th>
+                    <th>Sarzs szám B</th>
+                    <th>Érkezési idő</th>
+                    <th>Kezdés idő</th>
+                    <th>Befejezés</th>
+                    <th>Labor idő /perc</th>
+                    <th>Monogram</th>
+                    <th>Állapot</th>
+                    <th>Indok</th>
+                    <th>Vacuum A</th>
+                    <th>Vacuum A idő</th>
+                    <th>Vacuum B</th>
+                    <th>Vacuum B idő</th>
+                    <th>Sorszám</th>
+                    <th>Kiszerelés dátuma</th>
+                    <th>Kiszerelés oka</th>
+                </tr>
+            </thead>
+            <tbody>
+                {% for row in data %}
+                <tr data-status="{{ row['allapot'] }}">
+                    <td>{{ row['paszta_nev'] }}</td>
+                    <td>{{ row['idh'] }}</td>
+                    <td>{{ row['sarzs_szam_A'] }}</td>
+                    <td>{{ row['sarzs_szam_B'] }}</td>
+                    <td>{{ row['erkezesi_ido'] }}</td>
+                    <td>{{ row['kezdes_ido'] }}</td>
+                    <td>{{ row['befejezes'] }}</td>
+                    <td>{{ row['labor_ido'] if row['labor_ido'] else "N/A" }}</td>
+                    <td>{{ row['monogram'] }}</td>
+                    <td>{{ row['allapot'] }}</td>
+                    <td>{{ row['indok'] if row['indok'] else "-" }}</td>
+                    <td>{{ row.vacuum_eredmeny_A or '-' }}</td>
+                    <td>{{ row.vacuum_ido_A or '-' }}</td>
+                    <td>{{ row.vacuum_eredmeny_B or '-' }}</td>
+                    <td>{{ row.vacuum_ido_B or '-' }}</td>
+                    <td>{{ row['sorszam'] }}</td>
+                    <td>{{ row['kiszereles_datum'] }}</td>
+                    <td>{{ row['kiszereles_oka'] }}</td>
+                </tr>
+                {% else %}
+                <tr><td colspan="18">Nincs adat</td></tr>
+                {% endfor %}
+            </tbody>
+        </table>
+    </div>
+
+    <footer>
+        <div class="logo-container">
+            <img src="{{ url_for('static', filename='henkel_logo.png') }}" alt="Henkel Logo">
+        </div>
+    </footer>
+    
+    <script src="{{ url_for('static', filename='app.js') }}"></script>
+    <div id="error-container" style="display: none; text-align: center;">
+        <img src="{{ url_for('static', filename='error.png') }}" alt="Hiba történt">
+        <p>Valami hiba történt! Próbáld újra később.</p>
+    </div>
+
+</body>
+</html>

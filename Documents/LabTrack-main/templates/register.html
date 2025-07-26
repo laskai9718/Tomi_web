@@ -1,0 +1,35 @@
+<!DOCTYPE html>
+<html lang="hu">
+<head>
+    <meta charset="UTF-8">
+    <title>Regisztráció</title>
+    <link rel="stylesheet" href="{{ url_for('static', filename='mind-table.css') }}">
+</head>
+<body>
+
+
+
+<div id="login-container">
+  <h1>Regisztráció</h1>
+  <form method="POST" style="width:100%;">
+    <label for="username">Felhasználónév</label>
+    <input type="text" name="username" id="username" required>
+
+    <label for="email">Email</label>
+    <input type="email" name="email" id="email" required>
+
+    <label for="password">Jelszó</label>
+    <input type="password" name="password" id="password" required>
+
+    <button type="submit">Regisztrálok</button>
+    <p class="message">{{ msg }}</p>
+  </form>
+  <nav>
+    <a href="{{ url_for('logout') }}"><img src="{{ url_for('static', filename='icons/exit.png') }}" alt="teremlési icon" width="24" height="24"> Kijelentkezés</a>
+    <a href="{{ url_for('index') }}"><img src="{{ url_for('static', filename='icons/arrow.png') }}" alt="teremlési icon" width="24" height="24"> Vissza</a>
+  </nav>
+</div>
+
+
+</body>
+</html>
