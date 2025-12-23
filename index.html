@@ -13,21 +13,22 @@
         <div class="buborek" style="width: 350px; height: 350px; bottom: -50px; right: -50px; animation-duration: 25s; opacity: 0.2;"></div>
     </div>
 
-    <header>
-        <nav>
-
-            <div class="hamburger" id="hamburger">
+<header>
+    <nav>
+        <div class="hamburger" id="hamburger">
             <i class="fas fa-bars"></i>
-            </div>
-            <ul>
-                <li><a href="#rolam"><i class="fas fa-user-heart"></i> Bemutatkozás</a></li>
-                <li><a href="#termekek"><i class="fas fa-hammer"></i> Termékek</a></li>
-                <li><a href="#galeria"><i class="fas fa-images"></i> Galéria</a></li>
-                <li><a href="#kapcsolat"><i class="fas fa-paper-plane"></i> Kapcsolat</a></li>
-                <li><button class="theme-switch" id="dark-toggle">Sötét mód</button></li>
-            </ul>
-        </nav>
-    </header>
+        </div>
+
+        <ul id="nav-menu">
+            <li><a href="#rolam"><i class="fas fa-user-heart"></i> Bemutatkozás</a></li>
+            <li><a href="#termekek"><i class="fas fa-hammer"></i> Termékek</a></li>
+            <li><a href="#galeria"><i class="fas fa-images"></i> Galéria</a></li>
+            <li><a href="#folyamatban"><i class="fas fa-edit"></i> Készülőben</a></li>
+            <li><a href="#kapcsolat"><i class="fas fa-paper-plane"></i> Kapcsolat</a></li>
+            <li><button class="theme-switch" id="dark-toggle">Sötét mód</button></li>
+        </ul>
+    </nav>
+</header>
 
     <main>
 <section id="rolam" class="reveal">
@@ -124,6 +125,14 @@
         <button id="mantra-ok-gomb">Köszönöm</button>
     </div>
 </div>
+
+<div id="lightbox" class="lightbox">
+    <span class="bezar" onclick="bezarLightbox()">&times;</span>
+    
+    <button class="lightbox-nav bal" id="prev-kep">&#10094;</button>
+    <img class="lightbox-tartalom" id="nagy-kep">
+    <button class="lightbox-nav jobb" id="next-kep">&#10095;</button>
+</div>
 <footer>
     <div class="footer-tartalom">
         <p>© 2026 Kézműves Portfólió</p>
@@ -141,5 +150,6 @@
     <script src="assets/js/theme.js"></script>
     <script src="assets/js/mantra.js"></script>
     <script src="assets/js/nav.js"></script>
+    <script src="assets/js/lightbox.js"></script>
 </body>
 </html>

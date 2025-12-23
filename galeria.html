@@ -6,6 +6,7 @@
     <title>Teljes Galéria - Kézműves Alkotások</title>
     <link rel="stylesheet" href="assets/css/style.css">
     <link rel="icon" type="image/x-icon" href="assets/img/favicon.ico">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.2/css/all.min.css">
 </head>
 <body>
     <div class="hatter-animacio">
@@ -13,14 +14,17 @@
         <div class="buborek" style="width: 350px; height: 350px; bottom: -50px; right: -50px; animation-duration: 25s; opacity: 0.2;"></div>
     </div>
 
-    <header>
-        <nav>
-            <ul>
-                <li><a href="index.html">Vissza a főoldalra</a></li>
-                <li><button class="theme-switch" id="dark-toggle">Sötét mód</button></li>
-            </ul>
-        </nav>
-    </header>
+<header>
+    <nav>
+        <div class="hamburger" id="hamburger">
+            <i class="fas fa-bars"></i>
+        </div>
+        <ul id="nav-menu">
+            <li><a href="index.html"><i class="fas fa-home"></i> Vissza a főoldalra</a></li>
+            <li><button class="theme-switch" id="dark-toggle">Sötét mód</button></li>
+        </ul>
+    </nav>
+</header>
 
     <main>
         <section>
@@ -66,11 +70,16 @@
         <p>© 2024 Kézműves Portfólió</p>
     </footer>
 
-    <div id="lightbox" class="lightbox">
-        <span class="bezar" onclick="bezarLightbox()">&times;</span>
-        <img class="lightbox-tartalom" id="nagy-kep">
-    </div>
+<div id="lightbox" class="lightbox">
+    <span class="bezar" onclick="bezarLightbox()">&times;</span>
+    
+    <button class="lightbox-nav bal" id="prev-kep">&#10094;</button>
+    <img class="lightbox-tartalom" id="nagy-kep">
+    <button class="lightbox-nav jobb" id="next-kep">&#10095;</button>
+</div>
 
+    <script src="assets/js/theme.js"></script>
+    <script src="assets/js/nav.js"></script>
     <script src="assets/js/lightbox.js"></script>
-    <script src="assets/js/theme.js"></script> </body>
+</body>
 </html>

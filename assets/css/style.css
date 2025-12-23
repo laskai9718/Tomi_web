@@ -388,7 +388,41 @@ article:hover {
     border-radius: 5px;
     animation: zoom 0.3s;
 }
+.lightbox-nav {
+    position: absolute;
+    top: 50%;
+    transform: translateY(-50%);
+    background: rgba(255, 255, 255, 0.1);
+    color: white;
+    border: none;
+    padding: 20px;
+    font-size: 40px;
+    cursor: pointer;
+    border-radius: 5px;
+    transition: background 0.3s;
+    z-index: 2001; /* A kép felett kell lennie */
+}
 
+.lightbox-nav:hover {
+    background: rgba(255, 255, 255, 0.3);
+}
+
+.lightbox-nav.bal { left: 20px; }
+.lightbox-nav.jobb { right: 20px; }
+
+/* Add hozzá a style.css-hez */
+#slider img {
+    cursor: pointer;
+    transition: opacity 0.3s;
+}
+
+#slider img:hover {
+    opacity: 0.8;
+}
+/* Mobilon kicsit kisebbek legyenek */
+@media (max-width: 600px) {
+    .lightbox-nav { padding: 10px; font-size: 25px; }
+}
 @keyframes zoom {
     from {transform: scale(0)} 
     to {transform: scale(1)}
