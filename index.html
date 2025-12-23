@@ -2,80 +2,87 @@
 <html lang="hu">
 <head>
     <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no">
     <title>Kézműves Portfólió</title>
     <link rel="stylesheet" href="assets/css/style.css">
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.2/css/all.min.css">
 </head>
 <body>
+
+    <div id="loader">
+        <div class="spinner"></div>
+    </div>
+
     <div class="hatter-animacio">
         <div class="buborek" style="width: 450px; height: 450px; top: -150px; left: -100px;"></div>
-        <div class="buborek" style="width: 350px; height: 350px; bottom: -50px; right: -50px; animation-duration: 25s; opacity: 0.2;"></div>
+        <div class="buborek" style="width: 350px; height: 350px; top: 75%; right: -50px; animation-duration: 25s; opacity: 0.2;"></div>
     </div>
 
-<header>
-    <nav>
-        <div class="hamburger" id="hamburger">
-            <i class="fas fa-bars"></i>
-        </div>
-
-        <ul id="nav-menu">
-            <li><a href="#rolam"><i class="fas fa-user-heart"></i> Bemutatkozás</a></li>
-            <li><a href="#termekek"><i class="fas fa-hammer"></i> Termékek</a></li>
-            <li><a href="#galeria"><i class="fas fa-images"></i> Galéria</a></li>
-            <li><a href="#folyamatban"><i class="fas fa-edit"></i> Készülőben</a></li>
-            <li><a href="#kapcsolat"><i class="fas fa-paper-plane"></i> Kapcsolat</a></li>
-            <li><button class="theme-switch" id="dark-toggle">Sötét mód</button></li>
-        </ul>
-    </nav>
-</header>
+    <header>
+        <nav>
+            <div class="hamburger" id="hamburger">
+                <i class="fas fa-bars"></i>
+            </div>
+            <ul id="nav-menu">
+                <li><a href="#rolam"><i class="fas fa-user-heart"></i> Bemutatkozás</a></li>
+                <li><a href="#termekek"><i class="fas fa-hammer"></i> Termékek</a></li>
+                <li><a href="#galeria"><i class="fas fa-images"></i> Galéria</a></li>
+                <li><a href="#folyamatban"><i class="fas fa-edit"></i> Készülőben</a></li>
+                <li><a href="#kapcsolat"><i class="fas fa-paper-plane"></i> Kapcsolat</a></li>
+                <li>
+                    <button class="theme-switch" id="dark-toggle" aria-label="Sötét mód váltó">
+                        <i class="fas fa-moon"></i>
+                        <i class="fas fa-sun"></i>
+                    </button>
+                </li>
+            </ul>
+        </nav>
+    </header>
 
     <main>
-<section id="rolam" class="reveal">
-    <div class="bemutatkozas-header">
-        <img src="assets/img/logo.jpg" alt="Műhely Logó" class="rolam-logo">
-        <h1>Üdvözöllek a műhelyemben!</h1>
-    </div>
-    <p>Itt írhatsz pár szót arról, ki vagy és miért szereted a kézművességet. Mesélj az ismerősöd stílusáról!</p>
-</section>
+        <section id="rolam" class="reveal">
+            <div class="bemutatkozas-header">
+                <img src="assets/img/logo.jpg" alt="Műhely Logó" class="rolam-logo">
+                <h1>Üdvözöllek a műhelyemben!</h1>
+            </div>
+            <p>Itt írhatsz pár szót arról, ki vagy és miért szereted a kézművességet.</p>
+        </section>
 
-<section id="termekek">
-    <h2 class="reveal">Kézműves Portfólióm</h2>
-    <div class="termek-racs">
-        <article class="termek-kartya reveal">
-            <img src="assets/img/fa_1.jpg" alt="Fából készült alkotás">
-            <h3><i class="fas fa-tree"></i> Fafaragások</h3>
-            <p>Egyedi, kézzel munkált fa dísztárgyak és használati eszközök.</p>
-        </article>
-
-        <article class="termek-kartya reveal">
-            <img src="assets/img/karkoto1.jpg" alt="Kézműves karkötő">
-            <h3><i class="fas fa-gem"></i> Egyedi Karkötők</h3>
-            <p>Saját tervezésű, kézzel fűzött ékszerek különleges alapanyagokból.</p>
-        </article>
-
-        <article class="termek-kartya reveal">
-            <img src="assets/img/Család(i) fa 1.jpg" alt="Családi fa dekoráció">
-            <h3><i class="fas fa-users-rays"></i> Családfa Alkotások</h3>
-            <p>Személyre szabott emlékőrzők az egész család számára.</p>
-        </article>
-    </div>
-</section>
+        <section id="termekek">
+            <h2 class="reveal">Kézműves Portfólióm</h2>
+            <div class="termek-racs">
+                <article class="termek-kartya reveal">
+                    <img src="assets/img/fa_1.jpg" alt="Fából készült alkotás">
+                    <h3><i class="fas fa-tree"></i> Fafaragások</h3>
+                    <p>Egyedi, kézzel munkált fa dísztárgyak.</p>
+                </article>
+                <article class="termek-kartya reveal">
+                    <img src="assets/img/karkoto1.jpg" alt="Kézműves karkötő">
+                    <h3><i class="fas fa-gem"></i> Egyedi Karkötők</h3>
+                    <p>Saját tervezésű ékszerek.</p>
+                </article>
+                <article class="termek-kartya reveal">
+                    <img src="assets/img/Család(i) fa 1.jpg" alt="Családi fa dekoráció">
+                    <h3><i class="fas fa-users-rays"></i> Családfa Alkotások</h3>
+                    <p>Személyre szabott emlékőrzők.</p>
+                </article>
+            </div>
+        </section>
 
         <section id="galeria" class="reveal">
             <h2>Ízelítő a munkáimból</h2>
             <div class="galeria-kontener">
                 <button class="csuszka-gomb bal" onclick="mozgat(-1)">&#10094;</button>
                 <div class="galeria-csuszka" id="slider">
-                    <img src="assets/img/fa_1.jpg" alt="Fa munka 1" alt="1">
-                    <img src="assets/img/karkoto1.jpg" alt="Karkötő 1" alt="2">
-                    <img src="assets/img/karkoto2.jpg" alt="Karkötő 2" alt="3">
-                    <img src="assets/img/Család(i) fa 1.jpg" alt="Családfa 1" alt="4">
-                    <img src="assets/img/Család(i) fa 2.jpg" alt="Családfa 2" alt="5">
+                    <img src="assets/img/fa_1.jpg" alt="Fa munka 1">
+                    <img src="assets/img/karkoto1.jpg" alt="Karkötő 1">
+                    <img src="assets/img/karkoto2.jpg" alt="Karkötő 2">
+                    <img src="assets/img/Család(i) fa 1.jpg" alt="Családfa 1">
+                    <img src="assets/img/Család(i) fa 2.jpg" alt="Családfa 2">
                 </div>
                 <button class="csuszka-gomb jobb" onclick="mozgat(1)">&#10095;</button>
             </div>
-            <div style="margin-top: 30px;">
+            <div style="margin-top: 30px; text-align: center;">
                 <a href="galeria.html" class="teljes-galeria-btn">Összes kép megtekintése</a>
             </div>
         </section>
@@ -96,7 +103,7 @@
             </div>
         </section>
 
-        <section id="kapcsolat" class="reveal">
+        <section id="kapcsolat" class="reveal" style="margin-bottom: 50px;">
             <h2>Kapcsolat</h2>
             <form class="email-form">
                 <div class="input-csoport">
@@ -111,45 +118,44 @@
                     <label for="uzenet"><i class="fas fa-pen-nib"></i> Üzeneted</label>
                     <textarea id="uzenet" rows="5" placeholder="Miben segíthetek?" required></textarea>
                 </div>
-                <button type="submit" class="kuld-gomb">Üzenet küldése</button>
+                <button type="submit" class="kuld-gomb">
+                    <span>Üzenet küldése</span>
+                    <i class="fas fa-paper-plane"></i>
+                </button>
             </form>
         </section>
     </main>
 
-    <div id="mantra-modal" class="modal-hatter">
-    <div class="modal-tartalom">
-        <span class="bezaras-gomb">&times;</span>
-        <div class="mantra-ikon"><i class="fas fa-sparkles"></i></div>
-        <h2>Mai útravaló</h2>
-        <p id="napi-mantra-szoveg">"Betöltés..."</p>
-        <button id="mantra-ok-gomb">Köszönöm</button>
-    </div>
-</div>
-
-<div id="lightbox" class="lightbox">
-    <span class="bezar" onclick="bezarLightbox()">&times;</span>
-    
-    <button class="lightbox-nav bal" id="prev-kep">&#10094;</button>
-    <img class="lightbox-tartalom" id="nagy-kep">
-    <button class="lightbox-nav jobb" id="next-kep">&#10095;</button>
-</div>
 <footer>
-    <div class="footer-tartalom">
-        <p>© 2026 Kézműves Portfólió</p>
-        <div class="social-ikonok">
-            <a href="https://facebook.com/PROFILOD" target="_blank" aria-label="Facebook"><i class="fab fa-facebook-f"></i></a>
-            <a href="https://instagram.com/PROFILOD" target="_blank" aria-label="Instagram"><i class="fab fa-instagram"></i></a>
-            <a href="https://pinterest.com/PROFILOD" target="_blank" aria-label="Pinterest"><i class="fab fa-pinterest"></i></a>
-            <a href="mailto:info@kezmuvesoldal.hu" aria-label="Email"><i class="fas fa-envelope"></i></a>
+        <div class="footer-tartalom">
+            <p>© 2026 Kézműves Portfólió</p>
+            <div class="social-ikonok">
+                </div>
+            <p>info@kezmuvesoldal.hu</p>
         </div>
-        <p>info@kezmuvesoldal.hu</p>
+    </footer>
+
+    <div id="mantra-modal" class="modal-hatter">
+        <div class="modal-tartalom">
+            <span class="bezaras-gomb">&times;</span>
+            <h2>Mai útravaló</h2>
+            <p id="napi-mantra-szoveg">"Betöltés..."</p>
+            <button id="mantra-ok-gomb">Köszönöm</button>
+        </div>
     </div>
-</footer>
+
+    <div id="lightbox" class="lightbox">
+        <span class="bezar" onclick="bezarLightbox()">&times;</span>
+        <button class="lightbox-nav bal" id="prev-kep">&#10094;</button>
+        <img class="lightbox-tartalom" id="nagy-kep" alt="Nagy kép">
+        <button class="lightbox-nav jobb" id="next-kep">&#10095;</button>
+    </div>
 
     <script src="assets/js/slider.js"></script>
     <script src="assets/js/theme.js"></script>
     <script src="assets/js/mantra.js"></script>
     <script src="assets/js/nav.js"></script>
     <script src="assets/js/lightbox.js"></script>
+    <script src="assets/js/loader.js"></script>
 </body>
 </html>
