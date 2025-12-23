@@ -5,6 +5,7 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Kézműves Portfólió</title>
     <link rel="stylesheet" href="assets/css/style.css">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.2/css/all.min.css">
 </head>
 <body>
     <div class="hatter-animacio">
@@ -14,12 +15,15 @@
 
     <header>
         <nav>
+
+            <div class="hamburger" id="hamburger">
+            <i class="fas fa-bars"></i>
+            </div>
             <ul>
-                <li><a href="#rolam">Bemutatkozás</a></li>
-                <li><a href="#termekek">Termékek</a></li>
-                <li><a href="#galeria">Galéria</a></li>
-                <li><a href="#folyamatban">Készülőben</a></li>
-                <li><a href="#kapcsolat">Kapcsolat</a></li>
+                <li><a href="#rolam"><i class="fas fa-user-heart"></i> Bemutatkozás</a></li>
+                <li><a href="#termekek"><i class="fas fa-hammer"></i> Termékek</a></li>
+                <li><a href="#galeria"><i class="fas fa-images"></i> Galéria</a></li>
+                <li><a href="#kapcsolat"><i class="fas fa-paper-plane"></i> Kapcsolat</a></li>
                 <li><button class="theme-switch" id="dark-toggle">Sötét mód</button></li>
             </ul>
         </nav>
@@ -39,19 +43,19 @@
     <div class="termek-racs">
         <article class="termek-kartya reveal">
             <img src="assets/img/fa_1.jpg" alt="Fából készült alkotás">
-            <h3>Fafaragások</h3>
+            <h3><i class="fas fa-tree"></i> Fafaragások</h3>
             <p>Egyedi, kézzel munkált fa dísztárgyak és használati eszközök.</p>
         </article>
 
         <article class="termek-kartya reveal">
             <img src="assets/img/karkoto1.jpg" alt="Kézműves karkötő">
-            <h3>Egyedi Karkötők</h3>
+            <h3><i class="fas fa-gem"></i> Egyedi Karkötők</h3>
             <p>Saját tervezésű, kézzel fűzött ékszerek különleges alapanyagokból.</p>
         </article>
 
         <article class="termek-kartya reveal">
             <img src="assets/img/Család(i) fa 1.jpg" alt="Családi fa dekoráció">
-            <h3>Családfa Alkotások</h3>
+            <h3><i class="fas fa-users-rays"></i> Családfa Alkotások</h3>
             <p>Személyre szabott emlékőrzők az egész család számára.</p>
         </article>
     </div>
@@ -95,15 +99,15 @@
             <h2>Kapcsolat</h2>
             <form class="email-form">
                 <div class="input-csoport">
-                    <label for="nev">Neved</label>
+                    <label for="nev"><i class="fas fa-user"></i> Neved</label>
                     <input type="text" id="nev" placeholder="Kovács Anna" required>
                 </div>
                 <div class="input-csoport">
-                    <label for="email">E-mail címed</label>
+                    <label for="email"><i class="fas fa-envelope"></i> E-mail címed</label>
                     <input type="email" id="email" placeholder="pelda@email.com" required>
                 </div>
                 <div class="input-csoport">
-                    <label for="uzenet">Üzeneted</label>
+                    <label for="uzenet"><i class="fas fa-pen-nib"></i> Üzeneted</label>
                     <textarea id="uzenet" rows="5" placeholder="Miben segíthetek?" required></textarea>
                 </div>
                 <button type="submit" class="kuld-gomb">Üzenet küldése</button>
@@ -111,11 +115,31 @@
         </section>
     </main>
 
-    <footer>
-        <p>© 2024 Kézműves Portfólió | info@kezmuvesoldal.hu</p>
-    </footer>
+    <div id="mantra-modal" class="modal-hatter">
+    <div class="modal-tartalom">
+        <span class="bezaras-gomb">&times;</span>
+        <div class="mantra-ikon"><i class="fas fa-sparkles"></i></div>
+        <h2>Mai útravaló</h2>
+        <p id="napi-mantra-szoveg">"Betöltés..."</p>
+        <button id="mantra-ok-gomb">Köszönöm</button>
+    </div>
+</div>
+<footer>
+    <div class="footer-tartalom">
+        <p>© 2026 Kézműves Portfólió</p>
+        <div class="social-ikonok">
+            <a href="https://facebook.com/PROFILOD" target="_blank" aria-label="Facebook"><i class="fab fa-facebook-f"></i></a>
+            <a href="https://instagram.com/PROFILOD" target="_blank" aria-label="Instagram"><i class="fab fa-instagram"></i></a>
+            <a href="https://pinterest.com/PROFILOD" target="_blank" aria-label="Pinterest"><i class="fab fa-pinterest"></i></a>
+            <a href="mailto:info@kezmuvesoldal.hu" aria-label="Email"><i class="fas fa-envelope"></i></a>
+        </div>
+        <p>info@kezmuvesoldal.hu</p>
+    </div>
+</footer>
 
     <script src="assets/js/slider.js"></script>
     <script src="assets/js/theme.js"></script>
+    <script src="assets/js/mantra.js"></script>
+    <script src="assets/js/nav.js"></script>
 </body>
 </html>

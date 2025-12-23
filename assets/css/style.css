@@ -42,12 +42,31 @@ section {
     margin: 0 auto;
     text-align: center;
 }
+/* Ikonok stílusa a szövegek mellett */
+nav ul li a i, 
+h3 i, 
+label i {
+    margin-right: 8px; /* Távolság az ikon és a szöveg között */
+    color: var(--accent-color);
+    opacity: 0.8;
+}
+
+/* A mantra ikonja legyen nagyobb és díszesebb */
+.mantra-ikon i {
+    font-size: 1rem;
+    color: #d4a373; /* Aranyos/Barna szín */
+    margin-bottom: 15px;
+    display: block;
+}
 
 /* Ha a címeknek más betűtípust akarsz: */
 h1, h2, h3 {
     font-family: 'Parisienne';
+    font-size: 35px;
 }
-
+p { 
+    font-size: 30px;
+}
 /* Háttér animáció javítása */
 .hatter-animacio {
     position: fixed;
@@ -130,6 +149,7 @@ h1, h2, h3 {
 /* Ha a h1 és p szöveg is középen legyen ebben a szekcióban */
 #rolam h1 {
     margin-bottom: 10px; /* Kisebb távolság, mert már a headerben van */
+    font-size: 25px;
 }
 
 #rolam p {
@@ -139,13 +159,61 @@ h1, h2, h3 {
 /* ==========================================================================
    2. NAVIGÁCIÓ (HEADER)
    ========================================================================== */
+/* --- 1. Összemegyő fejléc alapja --- */
 header {
     background-color: var(--white);
-    padding: 1rem 0;
+    padding: 1.5rem 0; /* Alapból kicsit vastagabb */
     box-shadow: 0 2px 5px rgba(0,0,0,0.1);
     position: sticky;
     top: 0;
     z-index: 1000;
+    transition: padding 0.4s ease, background-color 0.4s ease; /* Sima átmenet */
+}
+
+/* Ez az osztály fog hozzáadódni görgetéskor */
+header.scrolled {
+    padding: 0.6rem 0;
+    background-color: rgba(255, 255, 255, 0.95); /* Kicsit áttetszőbb lesz */
+    backdrop-filter: blur(10px);
+}
+
+/* --- 2. Hamburger ikon stílusa (alapból rejtve) --- */
+.hamburger {
+    display: none;
+    font-size: 2rem;
+    cursor: pointer;
+    color: var(--accent-color);
+    padding: 0 20px;
+}
+
+/* --- 3. Frissített Mobil Nézet (650px alatt) --- */
+@media (max-width: 650px) {
+    .hamburger {
+        display: block; /* Mobilon megjelenik */
+        text-align: right;
+    }
+
+    nav ul {
+        display: none; /* Alapból rejtve mobilon */
+        flex-direction: column;
+        position: absolute;
+        top: 100%;
+        left: 0;
+        width: 100%;
+        background-color: var(--white);
+        padding: 20px 0;
+        box-shadow: 0 5px 10px rgba(0,0,0,0.1);
+    }
+
+    /* Amikor rákattintunk a hamburgerre, ez az osztály aktiválódik */
+    nav ul.active {
+        display: flex;
+    }
+
+    nav ul li {
+        margin: 15px 0;
+        text-align: center;
+    }
 }
 
 nav ul {
@@ -163,6 +231,7 @@ nav ul li a {
     color: var(--accent-color);
     font-weight: bold;
     transition: var(--transition);
+    font-size: 20px;
 }
 
 nav ul li a:hover {
@@ -451,7 +520,120 @@ footer {
     padding: 40px 20px;
     text-align: center;
 }
+/* Social Ikonok Konténer */
+.social-ikonok {
+    margin: 20px 0;
+    display: flex;
+    justify-content: center;
+    gap: 15px;
+}
 
+/* Egyedi ikon stílus */
+.social-ikonok a {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    width: 45px;
+    height: 45px;
+    background-color: rgba(255, 255, 255, 0.1);
+    color: var(--white);
+    border: 1px solid var(--white);
+    border-radius: 50%;
+    text-decoration: none;
+    font-size: 1.2rem;
+    transition: all var(--transition);
+}
+
+/* Lebegés (Hover) effekt */
+.social-ikonok a:hover {
+    background-color: var(--white);
+    color: var(--accent-color);
+    transform: translateY(-5px);
+    box-shadow: 0 5px 15px rgba(0,0,0,0.3);
+}
+
+/* Footer szöveg igazítás */
+.footer-tartalom {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+}
+
+/* ==========================================================================
+   8. Mantra üzenet 
+   ========================================================================== */
+/* Modal (háttér) */
+.modal-hatter {
+    display: none; /* Alapból rejtve */
+    position: fixed;
+    z-index: 1000;
+    left: 0;
+    top: 0;
+    width: 100%;
+    height: 100%;
+    background-color: rgba(0,0,0,0.6); /* Sötétített háttér */
+    backdrop-filter: blur(5px); /* Elhomályosítja a mögötte lévő oldalt */
+}
+
+/* Modal doboz */
+.modal-tartalom {
+    background-color: #fff;
+    margin: 15% auto;
+    padding: 30px;
+    border: 2px solid var(--accent-color);
+    width: 80%;
+    max-width: 450px;
+    border-radius: 20px;
+    text-align: center;
+    position: relative;
+    box-shadow: 0 10px 30px rgba(0,0,0,0.3);
+    animation: popupMegjelenes 0.5s ease-out;
+}
+
+@keyframes popupMegjelenes {
+    from { transform: scale(0.7); opacity: 0; }
+    to { transform: scale(1); opacity: 1; }
+}
+
+/* Keresd meg ezt a részt és írd át így: */
+.modal-tartalom h2 {
+    font-family: 'Parisienne', cursive;
+    color: var(--accent-color); /* Ezt javítottuk ki */
+    font-size: 2.5rem;
+    margin-bottom: 15px;
+}
+
+#napi-mantra-szoveg {
+    font-size: 1.2rem;
+    line-height: 1.6;
+    margin-bottom: 25px;
+    color: #444;
+}
+
+/* Gombok */
+.bezaras-gomb {
+    position: absolute;
+    right: 20px;
+    top: 10px;
+    font-size: 28px;
+    cursor: pointer;
+    color: #aaa;
+}
+
+#mantra-ok-gomb {
+    background-color: var(--accent-color);
+    color: white;
+    border: none;
+    padding: 10px 25px;
+    border-radius: 25px;
+    cursor: pointer;
+    font-size: 1rem;
+    transition: transform 0.2s;
+}
+
+#mantra-ok-gomb:hover {
+    transform: scale(1.05);
+}
 /* ==========================================================================
    7. RESPONSIVE DESIGN (MOBIL NÉZET)
    ========================================================================== */
