@@ -463,9 +463,8 @@ nav ul li a.active-link {
     transition: transform 0.6s ease;
 }
 
-/* --- LIGHTBOX JAVÍTOTT ÉS STABIL VERZIÓ --- */
 .lightbox {
-    display: none; /* JS-ből váltva 'flex'-re */
+    display: none; /* Alapból rejtve */
     position: fixed;
     z-index: 99999;
     left: 0;
@@ -475,8 +474,7 @@ nav ul li a.active-link {
     background-color: rgba(0, 0, 0, 0.92);
     backdrop-filter: blur(10px);
     
-    /* Ez biztosítja, hogy a tartalom középen legyen */
-    display: flex;
+    /* Amikor aktív lesz (JS-ből), akkor kapja meg a flex-et */
     justify-content: center;
     align-items: center;
 }
@@ -518,6 +516,10 @@ nav ul li a.active-link {
     justify-content: center;
     align-items: center;
     border-radius: 10px;
+}
+/* Külön osztály a megjelenítéshez, amit a JS ad hozzá */
+.lightbox.active {
+    display: flex;
 }
 
 .lightbox-nav:hover {
