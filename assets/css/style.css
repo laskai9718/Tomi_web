@@ -869,10 +869,13 @@ footer {
 }
 
 #napi-mantra-szoveg {
-    font-size: 1.4rem;
+    font-family: 'Quicksand', sans-serif;
     font-style: italic;
-    margin: 20px 0;
+    font-weight: 500;
+    line-height: 1.5;
+    font-size: 1.5rem; /* Elég nagy, hogy jól olvasható legyen */
     color: var(--text-color);
+    padding: 10px;
 }
 
 /* ==========================================================================
