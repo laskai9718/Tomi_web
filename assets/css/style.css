@@ -465,66 +465,115 @@ nav ul li a.active-link {
 
 /* --- LIGHTBOX JAVÍTOTT ÉS STABIL VERZIÓ --- */
 .lightbox {
-    display: none;
+    display: none; /* JS-ből váltva 'flex'-re */
     position: fixed;
-    z-index: 9999; /* Legyen minden felett */
-    left: 0; top: 0;
-    width: 100%; height: 100%;
-    background-color: rgba(0, 0, 0, 0.9);
-    justify-content: center;
-    align-items: center;
-    backdrop-filter: blur(5px);
-}
-
-.lightbox-tartalom {
-    position: relative;
-    max-width: 80%; /* Kicsit beljebb húzzuk, hogy a nyilak elférjenek */
-    max-height: 80vh;
+    z-index: 99999;
+    left: 0;
+    top: 0;
+    width: 100%;
+    height: 100%;
+    background-color: rgba(0, 0, 0, 0.92);
+    backdrop-filter: blur(10px);
+    
+    /* Ez biztosítja, hogy a tartalom középen legyen */
     display: flex;
     justify-content: center;
     align-items: center;
 }
 
+/* A kép stílusa */
+.lightbox-tartalom {
+    max-width: 85%;
+    max-height: 85vh;
+    object-fit: contain;
+    border-radius: 5px;
+    box-shadow: 0 0 40px rgba(0,0,0,0.8);
+    z-index: 100; /* A nyilak alatt maradjon */
+}
+
 .lightbox-tartalom img {
     max-width: 100%;
-    max-height: 80vh;
+    max-height: 85vh;
     object-fit: contain;
-    border-radius: 8px;
-    box-shadow: 0 0 30px rgba(0,0,0,0.5);
-    animation: zoom 0.4s ease-out;
+    border: 3px solid rgba(255,255,255,0.1);
+    border-radius: 4px;
+    animation: zoom 0.3s ease-out;
 }
 
-/* KÜLÖN SZABÁLY A NAVIGÁCIÓNAK, hogy ne üsse a globális gombstílus */
-.lightbox .lightbox-nav {
-    position: absolute;
+/* KÖZÖS STÍLUS A NYILAKNAK */
+.lightbox-nav {
+    position: absolute; /* A .lightbox-hoz képest pozicionál */
     top: 50%;
-    transform: translateY(-50%);
-    width: 60px;
-    height: 60px;
-    z-index: 10001 !important; /* Kényszerítjük, hogy felül legyen */
-    background: rgba(255, 255, 255, 0.1);
+    transform: translateY(-50%); /* Tökéletes függőleges közép */
+    background: rgba(255, 255, 255, 0.05);
+    color: white;
+    border: none;
+    width: 80px;  /* Legyen elég nagy, hogy könnyű legyen eltalálni */
+    height: 100px;
+    font-size: 40px;
+    cursor: pointer;
+    z-index: 100000; /* Minden felett */
+    transition: all 0.3s ease;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    border-radius: 10px;
 }
 
-/* Pozíciók a tartalomhoz képest */
-.lightbox-nav.bal { left: -80px; }
-.lightbox-nav.jobb { right: -80px; }
+.lightbox-nav:hover {
+    background: rgba(255, 255, 255, 0.2);
+    color: var(--accent-color);
+}
+/* BAL NYÍL */
+.lightbox-nav.bal {
+    left: 20px; /* 20px távolság a bal széltől */
+}
 
-/* A BEZÁRÓ X GOMB FIXÁLÁSA */
+/* JOBB NYÍL */
+.lightbox-nav.jobb {
+    right: 20px; /* 20px távolság a jobb széltől */
+}
+
+/* A BEZÁRÓ X GOMB - A jobb felső sarokba fixálva */
 .bezar {
     position: absolute;
-    top: -40px; 
-    right: -40px; /* A kép jobb felső sarkán kívülre tesszük */
+    top: 20px;
+    right: 30px;
     color: white;
-    font-size: 50px;
+    font-size: 60px;
+    font-weight: bold;
     line-height: 1;
     cursor: pointer;
-    z-index: 10002 !important;
-    transition: transform 0.3s;
+    z-index: 100001;
+    transition: 0.3s;
+    text-shadow: 0 0 10px rgba(0,0,0,0.5);
 }
 
 .bezar:hover {
-    transform: scale(1.2);
-    color: #ff6b6b;
+    color: #ff4d4d;
+    transform: rotate(90deg);
+}
+
+/* Animáció */
+@keyframes zoom {
+    from { transform: scale(0.8); opacity: 0; }
+    to { transform: scale(1); opacity: 1; }
+}
+
+/* MOBIL FINOMHANGOLÁS */
+@media (max-width: 768px) {
+    .lightbox-nav {
+        width: 40px;
+        height: 70px;
+        font-size: 20px;
+        background: rgba(0, 0, 0, 0.3); /* Mobilon sötétebb háttér a láthatóságért */
+    }
+    
+    .bezar {
+        top: 10px;
+        right: 20px;
+        font-size: 45px;
+    }
 }
 
 /* Ha mobilon vagyunk, a nyilakat és az X-et beljebb hozzuk */
@@ -880,7 +929,7 @@ cite::before {
    12.GOMBOK EGYSÉGES STÍLUSA
    ========================================================================== */
 .kuld-gomb, .teljes-galeria-btn, .csuszka-gomb, 
-.theme-switch, .lightbox-nav, #mantra-ok-gomb {
+.theme-switch, #mantra-ok-gomb {
     display: inline-flex;
     align-items: center;
     justify-content: center;
@@ -939,7 +988,7 @@ cite::before {
 
 /* Ikonok és egyedi méretek */
 .kuld-gomb, .teljes-galeria-btn, #mantra-ok-gomb { padding: 15px 35px; min-width: 200px; }
-.csuszka-gomb, .theme-switch, .lightbox-nav { width: 50px; height: 50px; border-radius: 50%; }
+.csuszka-gomb, .theme-switch { width: 50px; height: 50px; border-radius: 50%; }
 
 .theme-switch .fa-sun { display: none; }
 [data-theme="dark"] .theme-switch .fa-moon { display: none; }
