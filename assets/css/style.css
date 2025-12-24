@@ -34,8 +34,9 @@ html {
     height: -webkit-fill-available;
 }
 
+/* Alap betűtípus beállítása - Jól olvasható Quicksand a főszövegnek */
 body {
-    font-family: 'Parisienne', cursive;
+    font-family: 'Quicksand', sans-serif;
     line-height: 1.6;
     background-color: var(--bg-color);
     color: var(--text-color);
@@ -48,20 +49,27 @@ body {
     flex-direction: column;
 }
 
-/* Betűméretek rögzítése */
-h1, h2 {
-    font-size: 35px;
+/* Címek - Marad a művészi Parisienne, de csak a kiemelt részeken */
+h1, h2, .al-cim, cite {
+    font-family: 'Parisienne', cursive;
+    font-size: 42px; /* Kicsit nagyobbra vettem, mert ez a betűtípus vékonyabb */
     margin-bottom: 20px;
     text-align: center;
+    font-weight: 400;
 }
 
 h3 {
+    font-family: 'Playfair Display', serif; /* Elegáns talpas font az alcímeknek */
     font-size: 28px;
     margin-bottom: 15px;
+    font-weight: 700;
 }
 
 p {
-    font-size: 22px;
+    font-family: 'Quicksand', sans-serif;
+    font-size: 18px; /* A 22px túl nagy volt egy modern oldalhoz, a 18px kényelmesebb */
+    font-weight: 400;
+    letter-spacing: 0.2px;
 }
 
 main {
@@ -237,6 +245,36 @@ section {
     border-top: 1px solid rgba(0, 0, 0, 0.1);
     padding-top: 15px;
 }
+.tudj-meg-tobbet-btn {
+    display: inline-flex;
+    align-items: center;
+    gap: 10px;
+    margin-top: 15px;
+    padding: 12px 25px;
+    background-color: transparent;
+    color: var(--accent-color) !important;
+    border: 2px solid var(--accent-color);
+    border-radius: 50px;
+    text-decoration: none;
+    font-weight: 600;
+    font-family: 'Quicksand', sans-serif;
+    transition: all 0.3s ease;
+    cursor: pointer;
+}
+
+.tudj-meg-tobbet-btn i {
+    transition: transform 0.3s ease;
+}
+
+.tudj-meg-tobbet-btn:hover {
+    background-color: var(--accent-color);
+    color: var(--white) !important;
+    box-shadow: 0 5px 15px rgba(0,0,0,0.1);
+}
+
+.tudj-meg-tobbet-btn:hover i {
+    transform: translateX(5px);
+}
 
 /* ==========================================================================
    RESPONSIVE (MOBIL) NÉZET
@@ -294,11 +332,13 @@ nav ul li {
     margin: 0 15px;
 }
 
+/* Navigációs menü betűtípusa */
 nav ul li a {
+    font-family: 'Quicksand', sans-serif;
     text-decoration: none;
     color: var(--accent-color);
-    font-weight: bold;
-    font-size: 20px;
+    font-weight: 600;
+    font-size: 18px;
     transition: var(--transition);
 }
 
@@ -385,6 +425,10 @@ nav ul li a.active-link {
     box-shadow: 0 5px 15px rgba(0,0,0,0.08);
     text-align: center;
     transition: transform var(--transition);
+    display: flex;
+    flex-direction: column;
+    justify-content: space-between; /* Így a gombok mindig alul lesznek egy vonalban */
+    height: 100%;
 }
 
 .termek-kartya:hover {
@@ -398,7 +442,9 @@ nav ul li a.active-link {
     border-radius: 10px;
     margin-bottom: 20px;
 }
-
+.termek-kartya .tudj-meg-tobbet-btn {
+    margin: 15px auto 0 auto; /* Középre igazítja a gombot a kártyán belül */
+}
 /* ==========================================================================
    7. GALÉRIA ÉS LIGHTBOX (JAVÍTOTT MÉRETEZÉS)
    ========================================================================== */
@@ -599,6 +645,37 @@ nav ul li a.active-link {
     border-left: 5px solid var(--accent-color);
     margin: 20px auto;
     max-width: 800px;
+}
+/* Dekoratív elválasztó stílusa */
+.dekor-elvalaszto {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    margin: 60px auto;
+    max-width: 800px;
+    padding: 0 20px;
+}
+
+.dekor-elvalaszto .vonal {
+    flex: 1;
+    height: 1px;
+    background: linear-gradient(to right, transparent, var(--accent-color), transparent);
+    opacity: 0.4;
+}
+
+.dekor-elvalaszto i {
+    margin: 0 20px;
+    font-size: 1.5rem;
+    color: var(--accent-color);
+    opacity: 0.6;
+    filter: drop-shadow(0 0 5px rgba(var(--accent-color), 0.2));
+}
+
+/* Szekciók közötti extra hely mobilon */
+@media (max-width: 768px) {
+    .dekor-elvalaszto {
+        margin: 40px auto;
+    }
 }
 /* ==========================================================================
    8. MŰHELYNAPLÓ (FOLYAMATBAN)
