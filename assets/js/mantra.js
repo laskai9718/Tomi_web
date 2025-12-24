@@ -4,32 +4,32 @@ const mantrak = [
     "Minden alkotás egy apró varázslat.",
     "A türelem virága mindig a legszebb.",
     "Engedd, hogy a kreativitásod vezessen!",
-    // Ide jöhet a többi 55 mantra...
+    "Az alkotás nem munka, hanem az élet ünneplése.",
+    "Ami szívvel készül, az a szívhez ér."
 ];
 
 function mantraMegjelenites() {
     const modal = document.getElementById('mantra-modal');
     const szoveg = document.getElementById('napi-mantra-szoveg');
-    const bezar = document.getElementsByClassName('bezaras-gomb')[0];
-    const okGomb = document.getElementById('mantra-ok-gomb');
+    
+    if (!modal || !szoveg) return; // Biztonsági mentés
 
-    // Véletlenszerű választás
     const randomMantra = mantrak[Math.floor(Math.random() * mantrak.length)];
     szoveg.textContent = `"${randomMantra}"`;
 
-    // Megjelenítés egy kis késleltetéssel (hogy az oldal már betöltsön)
     setTimeout(() => {
         modal.style.display = "block";
-    }, 1000);
+    }, 1200);
 
-    // Bezárás funkciók
-    const elrejtes = () => modal.style.display = "none";
-    bezar.onclick = elrejtes;
-    okGomb.onclick = elrejtes;
+    // Eseménykezelők központosítva
+    const bezarok = document.querySelectorAll('.bezaras-gomb, #mantra-ok-gomb');
+    bezarok.forEach(gomb => {
+        gomb.onclick = () => modal.style.display = "none";
+    });
+
     window.onclick = (event) => {
-        if (event.target == modal) elrejtes();
+        if (event.target == modal) modal.style.display = "none";
     };
 }
 
-// Futtatás betöltéskor
 document.addEventListener('DOMContentLoaded', mantraMegjelenites);

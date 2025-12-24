@@ -3,8 +3,15 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no">
-    <title>Kézműves Portfólió - Egyedi Családfák</title>
-    <meta name="description" content="Egyedi, kézzel készült családfák és kézműves ajándéktárgyak közvetlenül az alkotótól. Rendelj személyre szabott emlékőrzőt!">
+    <title>Kézműves Portfólió - Egyedi Családfák és Alkotások</title>
+    
+    <meta name="description" content="Egyedi, kézzel készült családfák, fafaragások és ékszerek közvetlenül az alkotótól.">
+    <meta name="author" content="Kézműves Portfólió">
+    
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Parisienne&family=Quicksand:wght@300;400;600;700&display=swap" rel="stylesheet">
+
     <link rel="stylesheet" href="assets/css/style.css">
     <link rel="icon" type="image/x-icon" href="assets/img/favicon.ico">
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.2/css/all.min.css">
@@ -21,15 +28,16 @@
     </div>
 
     <header>
-        <nav>
+        <nav class="nav-kontener">
             <div class="hamburger" id="hamburger">
                 <i class="fas fa-bars"></i>
             </div>
             <ul id="nav-menu">
                 <li><a href="#rolam"><i class="fas fa-id-badge"></i> Bemutatkozás</a></li>
-                <li><a href="#csaladfa-foprofil"><i class="fas fa-users-rays"></i> Családfák</a></li>
-                <li><a href="#termekek"><i class="fas fa-hammer"></i> Egyéb termékek</a></li>
+                <li><a href="#csaladfa-foprofil"><i class="fas fa-share-nodes"></i> Családfák</a></li>
+                <li><a href="#termekek"><i class="fas fa-hammer"></i> Termékek</a></li>
                 <li><a href="#galeria"><i class="fas fa-images"></i> Galéria</a></li>
+                <li><a href="#muhely-naplo"><i class="fas fa-clock-rotate-left"></i> Műhelynapló</a></li>
                 <li><a href="#kapcsolat"><i class="fas fa-paper-plane"></i> Kapcsolat</a></li>
                 <li>
                     <button class="theme-switch" id="dark-toggle" aria-label="Sötét mód váltó">
@@ -47,29 +55,26 @@
                 <img src="assets/img/logo.jpg" alt="Műhely Logó" class="rolam-logo">
                 <h1>Üdvözöllek a műhelyemben!</h1>
             </div>
-            <p>Itt írhatsz pár szót arról, ki vagy és miért szereted a kézművességet.</p>
+            <p>Szenvedélyem az alkotás, ahol a természetes anyagok és a családi történetek találkoznak. Minden darabot szívvel és odafigyeléssel készítek.</p>
         </section>
 
         <section id="csaladfa-foprofil" class="reveal">
             <div class="szekcio-fejlec">
-                <h2><i class="fas fa-users-rays"></i> A fő profilom: Családfa Alkotások</h2>
+                <h2>A fő profilom: Családfa Alkotások</h2>
             </div>
-            <div class="muhely-kartya" style="border-left: 5px solid var(--accent-color); margin-top: 30px;">
+            <div class="foprofil-kartya">
                 <div class="kep-es-statusz">
-    <a href="galeria.html#csaladfa-galeria">
-        <img src="assets/img/Család(i) fa 1.jpg" alt="Kiemelt Családfa" style="cursor: pointer;">
-    </a>
-    <span class="statusz-cimke tervezes">Legnépszerűbb</span>
-</div>
+                    <a href="galeria.html#csaladfa-galeria">
+                        <img src="assets/img/Család(i) fa 1.jpg" alt="Fő profil családfa">
+                    </a>
+                </div>
                 <div class="muhely-info">
                     <h3>Személyre szabott emlékőrzők</h3>
-                    <p style="font-size: 1.1rem; margin-bottom: 15px;">
+                    <p>
                         A családfa nálam nem csak egy dísztárgy, hanem egy kézzel készült történet. 
-                        Minden darabot egyedi igények alapján, a családtagok számához és a lakás stílusához igazítva készítek el. 
-                        Legyen szó faliképről vagy térbeli dekorációról, a célom az, hogy generációkon átívelő emléket alkossak.
+                        Minden darabot egyedi igények alapján, a családtagok számához és stílusához igazítva készítek el.
                     </p>
-                    <div class="haladas-bar"><div class="haladas-ertek" style="width: 100%;"></div></div>
-                    <p style="font-size: 0.9rem; margin-top: 10px; opacity: 0.8;">Kérhető egyedi feliratokkal és választható fa típusokkal.</p>
+                    <p class="kis-leiras">Gondos tervezés, minőségi alapanyagok, örök emlék.</p>
                 </div>
             </div>
         </section>
@@ -78,14 +83,14 @@
             <h2 class="reveal">További kézműves munkáim</h2>
             <div class="termek-racs">
                 <article class="termek-kartya reveal">
-                    <img src="assets/img/fa_1.jpg" alt="Fából készült alkotás">
+                    <img src="assets/img/fa_1.jpg" alt="Fafaragás">
                     <h3><i class="fas fa-tree"></i> Fafaragások</h3>
                     <p>Egyedi, kézzel munkált fa dísztárgyak és használati tárgyak.</p>
                 </article>
                 <article class="termek-kartya reveal">
-                    <img src="assets/img/karkoto1.jpg" alt="Kézműves karkötő">
+                    <img src="assets/img/karkoto1.jpg" alt="Karkötő">
                     <h3><i class="fas fa-gem"></i> Egyedi Karkötők</h3>
-                    <p>Saját tervezésű, fonott és ásványékszerek minden alkalomra.</p>
+                    <p>Saját tervezésű ékszerek természetes kövekből és fonott anyagokból.</p>
                 </article>
             </div>
         </section>
@@ -95,49 +100,45 @@
             <div class="galeria-kontener">
                 <button class="csuszka-gomb bal" onclick="mozgat(-1)">&#10094;</button>
                 <div class="galeria-csuszka" id="slider">
-    <a href="galeria.html#csaladfa-galeria"><img src="assets/img/Család(i) fa 1.jpg" alt="Családfa 1"></a>
-    
-    <img src="assets/img/fa_1.jpg" alt="Fa munka 1">
-    <img src="assets/img/karkoto1.jpg" alt="Karkötő 1">
-    
-    <a href="galeria.html#csaladfa-galeria"><img src="assets/img/Család(i) fa 2.jpg" alt="Családfa 2"></a>
-    
-    <img src="assets/img/karkoto2.jpg" alt="Karkötő 2">
-</div>
+                    <img src="assets/img/Család(i) fa 1.jpg" alt="Munka 1">
+                    <img src="assets/img/fa_1.jpg" alt="Munka 2">
+                    <img src="assets/img/karkoto1.jpg" alt="Munka 3">
+                    <img src="assets/img/Család(i) fa 2.jpg" alt="Munka 4">
+                </div>
                 <button class="csuszka-gomb jobb" onclick="mozgat(1)">&#10095;</button>
             </div>
-            <div style="margin-top: 30px; text-align: center;">
-                <a href="galeria.html" class="teljes-galeria-btn">Kattints a teljes galériához</a>
+            <div style="text-align: center; margin-top: 20px;">
+                <a href="galeria.html" class="teljes-galeria-btn">Teljes galéria megtekintése</a>
             </div>
         </section>
-        <section id="velemenyek" class="reveal">
-    <h2>Akik már tőlem rendeltek</h2>
-    <div class="velemeny-kartyak">
-        <blockquote>
-            "Gyönyörű lett a családfánk, a nappali dísze lett. Minden részletre figyelt az alkotó."
-            <cite>- Kovácsné Eszter</cite>
-        </blockquote>
-    </div>
-</section>
 
-        <section id="folyamatban" class="reveal">
-            <h2>Min dolgozom éppen?</h2>
+        <section id="muhely-naplo" class="reveal">
+            <h2>Műhelynapló - Amiken most dolgozom</h2>
             <div class="muhely-kontener">
-                <div class="muhely-kartya reveal">
+                <div class="muhely-kartya">
                     <div class="kep-es-statusz">
-                        <img src="https://images.unsplash.com/photo-1520406778330-4b9a27a05031?w=500" alt="Váza">
-                        <span class="statusz-cimke tervezes">Kivitelezés</span>
+                        <img src="https://images.unsplash.com/photo-1520406778330-4b9a27a05031?w=500" alt="Folyamatban lévő munka">
+                        <span class="statusz-cimke kivitelezes">Kivitelezés</span>
                     </div>
                     <div class="muhely-info">
                         <h3>Nagy családi fali dekoráció</h3>
                         <div class="haladas-bar"><div class="haladas-ertek" style="width: 65%;"></div></div>
-                        <p style="margin-top: 10px;">Egy 12 fős család részére készülő juharfa alkotás.</p>
+                        <p style="margin-top: 10px;">Egy 12 fős család részére készülő juharfa alkotás utolsó simításai.</p>
                     </div>
                 </div>
             </div>
         </section>
 
-        <section id="kapcsolat" class="reveal" style="margin-bottom: 50px;">
+        <section id="velemenyek" class="reveal">
+            <div class="velemeny-kontener">
+                <blockquote>
+                    "Gyönyörű lett a családfánk, a nappali dísze lett. Minden részletre figyelt az alkotó!"
+                    <cite>— Kovácsné Eszter</cite>
+                </blockquote>
+            </div>
+        </section>
+
+        <section id="kapcsolat" class="reveal">
             <h2>Kérj egyedi ajánlatot!</h2>
             <form class="email-form">
                 <div class="input-csoport">
@@ -149,7 +150,7 @@
                     <input type="email" id="email" placeholder="pelda@email.com" required>
                 </div>
                 <div class="input-csoport">
-                    <label for="uzenet"><i class="fas fa-pen-nib"></i> Üzeneted (melyik termék érdekel?)</label>
+                    <label for="uzenet"><i class="fas fa-pen-nib"></i> Üzeneted</label>
                     <textarea id="uzenet" rows="5" placeholder="Írd le az elképzelésed..." required></textarea>
                 </div>
                 <button type="submit" class="kuld-gomb">
@@ -159,41 +160,41 @@
             </form>
         </section>
     </main>
-
+<div id="mantra-modal" class="modal-hatter">
+    <div class="modal-tartalom">
+        <span class="bezaras-gomb">&times;</span>
+        <div class="mantra-dekor">
+            <i class="fas fa-sparkles"></i>
+        </div>
+        <h2>Mai útravaló</h2>
+        <p id="napi-mantra-szoveg">"Betöltés..."</p>
+        <button id="mantra-ok-gomb">Köszönöm</button>
+    </div>
+</div>
     <footer>
         <div class="footer-tartalom">
             <p>© 2026 Kézműves Portfólió</p>
             <div class="social-ikonok">
-                <a href="#" target="_blank" aria-label="Facebook"><i class="fab fa-facebook-f"></i></a>
-                <a href="#" target="_blank" aria-label="Instagram"><i class="fab fa-instagram"></i></a>
-                <a href="#" target="_blank" aria-label="Pinterest"><i class="fab fa-pinterest"></i></a>
-                <a href="mailto:info@kezmuvesoldal.hu" aria-label="Email"><i class="fas fa-envelope"></i></a>
+                <a href="#"><i class="fab fa-facebook-f"></i></a>
+                <a href="#"><i class="fab fa-instagram"></i></a>
+                <a href="mailto:info@kezmuvesoldal.hu"><i class="fas fa-envelope"></i></a>
             </div>
-            <p>info@kezmuvesoldal.hu</p>
         </div>
     </footer>
-
-    <div id="mantra-modal" class="modal-hatter">
-        <div class="modal-tartalom">
-            <span class="bezaras-gomb">&times;</span>
-            <h2>Mai útravaló</h2>
-            <p id="napi-mantra-szoveg">"Betöltés..."</p>
-            <button id="mantra-ok-gomb">Köszönöm</button>
-        </div>
-    </div>
 
     <div id="lightbox" class="lightbox">
         <span class="bezar" onclick="bezarLightbox()">&times;</span>
         <button class="lightbox-nav bal" id="prev-kep">&#10094;</button>
-        <img class="lightbox-tartalom" id="nagy-kep" alt="Nagy kép">
+        <img class="lightbox-tartalom" id="nagy-kep">
         <button class="lightbox-nav jobb" id="next-kep">&#10095;</button>
     </div>
 
     <script src="assets/js/slider.js"></script>
     <script src="assets/js/theme.js"></script>
-    <script src="assets/js/mantra.js"></script>
     <script src="assets/js/nav.js"></script>
     <script src="assets/js/lightbox.js"></script>
     <script src="assets/js/loader.js"></script>
+    <script src="assets/js/reveal.js"></script>
+    <script src="assets/js/mantra.js"></script>
 </body>
 </html>

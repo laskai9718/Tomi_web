@@ -69,7 +69,7 @@ main {
 }
 
 /* ==========================================================================
-   1.5 ANIMÁCIÓK ÉS MEGJELENÉS
+   2 ANIMÁCIÓK ÉS MEGJELENÉS
    ========================================================================== */
 .hatter-animacio {
     position: fixed;
@@ -132,7 +132,7 @@ section {
 .termek-kartya:nth-child(2) { transition-delay: 0.3s; }
 .termek-kartya:nth-child(3) { transition-delay: 0.5s; }
 /* ==========================================================================
-   2. RÓLAM SZEKCIÓ
+   3. RÓLAM SZEKCIÓ
    ========================================================================== */
 #rolam .bemutatkozas-header {
     display: flex;
@@ -162,9 +162,103 @@ section {
     margin: 0 auto;
     text-align: center;
 }
+/* ==========================================================================
+   4. FŐ PROFIL (CSALÁDFA) SZEKCIÓ
+   ========================================================================== */
+
+#csaladfa-foprofil {
+    padding: 100px 20px;
+    background: linear-gradient(to bottom, transparent, rgba(var(--accent-color), 0.05));
+}
+
+.foprofil-kartya {
+    display: flex;
+    align-items: center;
+    gap: 50px;
+    background-color: var(--card-bg);
+    border-radius: 40px;
+    padding: 30px;
+    box-shadow: 0 20px 60px rgba(0, 0, 0, 0.08);
+    transition: transform 0.4s ease, box-shadow 0.4s ease;
+    max-width: 1100px;
+    margin: 0 auto;
+    border: 1px solid rgba(var(--accent-color), 0.1);
+}
+
+.foprofil-kartya:hover {
+    transform: translateY(-5px);
+    box-shadow: 0 30px 70px rgba(0, 0, 0, 0.12);
+}
+
+/* Kép konténer */
+.foprofil-kartya .kep-es-statusz {
+    flex: 1;
+    min-width: 300px;
+    height: 450px;
+    border-radius: 30px;
+    overflow: hidden;
+    position: relative;
+}
+
+.foprofil-kartya .kep-es-statusz img {
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+    transition: transform 0.6s ease;
+}
+
+.foprofil-kartya:hover img {
+    transform: scale(1.05);
+}
+
+/* Információs rész */
+.foprofil-kartya .muhely-info {
+    flex: 1.2;
+    padding: 20px;
+}
+
+.foprofil-kartya h3 {
+    color: var(--accent-color);
+    margin-bottom: 20px;
+    line-height: 1.2;
+}
+
+.foprofil-kartya p {
+    font-family: 'Quicksand', sans-serif;
+    color: var(--text-color);
+    margin-bottom: 25px;
+    text-align: justify;
+}
+
+.foprofil-kartya .kis-leiras {
+    font-style: italic;
+    opacity: 0.8;
+    font-size: 0.95rem;
+    border-top: 1px solid rgba(0, 0, 0, 0.1);
+    padding-top: 15px;
+}
 
 /* ==========================================================================
-   3. NAVIGÁCIÓ (HEADER)
+   RESPONSIVE (MOBIL) NÉZET
+   ========================================================================== */
+@media (max-width: 900px) {
+    .foprofil-kartya {
+        flex-direction: column; /* Egymás alá rakja őket */
+        padding: 20px;
+        gap: 20px;
+    }
+
+    .foprofil-kartya .kep-es-statusz {
+        width: 100%;
+        height: 300px; /* Mobilon alacsonyabb kép */
+    }
+
+    .foprofil-kartya .muhely-info {
+        text-align: center;
+    }
+}
+/* ==========================================================================
+   5. NAVIGÁCIÓ (HEADER)
    ========================================================================== */
 header {
     background-color: var(--card-bg);
@@ -267,7 +361,7 @@ nav ul li a.active-link {
 }
 
 /* ==========================================================================
-   4. TERMÉKEK (GRID ELRENDEZÉS)
+   6. TERMÉKEK (GRID ELRENDEZÉS)
    ========================================================================== */
 #termekek {
     max-width: 1100px;
@@ -306,7 +400,7 @@ nav ul li a.active-link {
 }
 
 /* ==========================================================================
-   5. GALÉRIA ÉS LIGHTBOX (JAVÍTOTT MÉRETEZÉS)
+   7. GALÉRIA ÉS LIGHTBOX (JAVÍTOTT MÉRETEZÉS)
    ========================================================================== */
 #galeria {
     max-width: 1000px;
@@ -456,7 +550,7 @@ nav ul li a.active-link {
     max-width: 800px;
 }
 /* ==========================================================================
-   6. MŰHELYNAPLÓ (FOLYAMATBAN)
+   8. MŰHELYNAPLÓ (FOLYAMATBAN)
    ========================================================================== */
 .muhely-kontener {
     display: flex;
@@ -540,7 +634,7 @@ nav ul li a.active-link {
 }
 
 /* ==========================================================================
-   7. KAPCSOLAT ÉS LÁBLÉC (FOOTER)
+   9. KAPCSOLAT ÉS LÁBLÉC (FOOTER)
    ========================================================================== */
 .email-form {
     max-width: 500px;
@@ -620,7 +714,7 @@ footer {
 }
 
 /* ==========================================================================
-   8. MANTRA ÜZENET (MODAL)
+   10. MANTRA ÜZENET (MODAL)
    ========================================================================== */
 .modal-hatter {
     display: none;
@@ -680,7 +774,7 @@ footer {
 }
 
 /* ==========================================================================
-   10. LOADER
+   11. LOADER
    ========================================================================== */
 #loader {
     position: fixed;
@@ -704,9 +798,86 @@ footer {
 @keyframes spin {
     100% { transform: rotate(360deg); }
 }
+/* ==========================================================================
+   4. VÉLEMÉNYEK (VISSZAJELZÉSEK) STÍLUSA
+   ========================================================================== */
+
+#velemenyek {
+    padding: 100px 20px;
+    background-color: transparent;
+    display: flex;
+    justify-content: center;
+}
+
+.velemeny-kontener {
+    max-width: 800px;
+    width: 100%;
+    position: relative;
+    padding: 40px;
+}
+
+/* Az idézet stílusa */
+blockquote {
+    font-family: 'Quicksand', sans-serif;
+    font-size: 1.4rem;
+    line-height: 1.8;
+    text-align: center;
+    color: var(--text-color);
+    position: relative;
+    z-index: 1;
+}
+
+/* Nagy dekoratív idézőjel a háttérben */
+blockquote::before {
+    content: "\f10d"; /* FontAwesome idézőjel kód */
+    font-family: "Font Awesome 6 Free";
+    font-weight: 900;
+    position: absolute;
+    top: -40px;
+    left: 50%;
+    transform: translateX(-50%);
+    font-size: 5rem;
+    color: var(--accent-color);
+    opacity: 0.15;
+    z-index: -1;
+}
+
+/* Az író neve */
+cite {
+    display: block;
+    margin-top: 25px;
+    font-family: 'Parisienne', cursive;
+    font-size: 1.8rem;
+    color: var(--accent-color);
+    font-style: normal;
+}
+
+/* Egy kis elválasztó vonal az idézet alatt */
+cite::before {
+    content: "";
+    display: block;
+    width: 50px;
+    height: 2px;
+    background-color: var(--accent-color);
+    margin: 0 auto 15px auto;
+    opacity: 0.4;
+}
 
 /* ==========================================================================
-   11.GOMBOK EGYSÉGES STÍLUSA
+   RESPONSIVE NÉZET
+   ========================================================================== */
+@media (max-width: 600px) {
+    blockquote {
+        font-size: 1.1rem;
+    }
+    
+    cite {
+        font-size: 1.5rem;
+    }
+}
+
+/* ==========================================================================
+   12.GOMBOK EGYSÉGES STÍLUSA
    ========================================================================== */
 .kuld-gomb, .teljes-galeria-btn, .csuszka-gomb, 
 .theme-switch, .lightbox-nav, #mantra-ok-gomb {
