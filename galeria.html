@@ -2,90 +2,125 @@
 <html lang="hu">
 <head>
     <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Teljes Galéria - Kézműves Alkotások</title>
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no">
+    <title>Galéria - Kézműves Portfólió</title>
     <link rel="stylesheet" href="assets/css/style.css">
     <link rel="icon" type="image/x-icon" href="assets/img/favicon.ico">
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.2/css/all.min.css">
 </head>
 <body>
-    <div class="hatter-animacio">
-        <div class="buborek" style="width: 450px; height: 450px; top: -150px; left: -100px;"></div>
-        <div class="buborek" style="width: 350px; height: 350px; bottom: -50px; right: -50px; animation-duration: 25s; opacity: 0.2;"></div>
+
+    <div id="loader">
+        <div class="spinner"></div>
     </div>
 
-<header>
-    <nav>
-        <div class="hamburger" id="hamburger">
-            <i class="fas fa-bars"></i>
-        </div>
-        <ul id="nav-menu">
-            <li><a href="index.html"><i class="fas fa-home"></i> Vissza a főoldalra</a></li>
-            <li>
-    <button class="theme-switch" id="dark-toggle" aria-label="Sötét mód váltó">
-        <i class="fas fa-moon"></i>
-        <i class="fas fa-sun"></i>
-    </button>
-</li>
-        </ul>
-    </nav>
-</header>
+    <div class="hatter-animacio">
+        <div class="buborek" style="width: 450px; height: 450px; top: -150px; left: -100px;"></div>
+        <div class="buborek" style="width: 350px; height: 350px; top: 75%; right: -50px; animation-duration: 25s; opacity: 0.2;"></div>
+    </div>
+
+    <header>
+        <nav>
+            <div class="hamburger" id="hamburger">
+                <i class="fas fa-bars"></i>
+            </div>
+            <ul id="nav-menu">
+                <li><a href="index.html"><i class="fas fa-home"></i> Vissza a főoldalra</a></li>
+                <li>
+                    <button class="theme-switch" id="dark-toggle" aria-label="Sötét mód váltó">
+                        <i class="fas fa-moon"></i>
+                        <i class="fas fa-sun"></i>
+                    </button>
+                </li>
+            </ul>
+        </nav>
+    </header>
 
     <main>
-        <section>
-            <h1 class="reveal">Minden alkotásom</h1>
-            <p class="reveal">Böngéssz kedvedre a korábbi munkáim között.</p>
+        <section id="csaladfa-galeria" class="reveal" style="padding-top: 50px;">
+            <div class="szekcio-fejlec">
+                <h1><i class="fas fa-users-rays"></i> Családfa Alkotások</h1>
+                <div class="kiemelt-leiras">
+                    <p>
+                        A családfa nálam nem csupán dekoráció, hanem egy kézzel fogható történet. 
+                        Minden egyes darabot egyedi tervezés előz meg, ahol közösen döntjük el a stílust, 
+                        a fafajtát és az elrendezést. Legyen szó születésnapról, évfordulóról vagy nászajándékról, 
+                        ez az alkotás örök emlék marad minden családtag számára.
+                    </p>
+                </div>
+            </div>
             
             <div class="teljes-galeria-grid">
-    <div class="galeria-kep-kontener reveal"><img src="assets/img/fa_1.jpg" alt="Fa munka 1"></div>
-    <div class="galeria-kep-kontener reveal"><img src="assets/img/fa_2.jpg" alt="Fa munka 2"></div>
-    <div class="galeria-kep-kontener reveal"><img src="assets/img/fa_3.jpg" alt="Fa munka 3"></div>
-    <div class="galeria-kep-kontener reveal"><img src="assets/img/fa_4.jpg" alt="Fa munka 4"></div>
-    <div class="galeria-kep-kontener reveal"><img src="assets/img/fa_5.jpg" alt="Fa munka 5"></div>
-    <div class="galeria-kep-kontener reveal"><img src="assets/img/fa_6.jpg" alt="Fa munka 6"></div>
-    <div class="galeria-kep-kontener reveal"><img src="assets/img/fa_7.jpg" alt="Fa munka 7"></div>
-    <div class="galeria-kep-kontener reveal"><img src="assets/img/fa_8.jpg" alt="Fa munka 8"></div>
+                <div class="galeria-kep-kontener reveal"><img src="assets/img/Család(i) fa 1.jpg" alt="Családfa 1"></div>
+                <div class="galeria-kep-kontener reveal"><img src="assets/img/Család(i) fa 2.jpg" alt="Családfa 2"></div>
+                <div class="galeria-kep-kontener reveal"><img src="assets/img/Család(i) fa 3.jpg" alt="Családfa 3"></div>
+                <div class="galeria-kep-kontener reveal"><img src="assets/img/Család(i) fa 4.jpg" alt="Családfa 4"></div>
+                <div class="galeria-kep-kontener reveal"><img src="assets/img/Család(i) fa 5.jpg" alt="Családfa 5"></div>
+                <div class="galeria-kep-kontener reveal"><img src="assets/img/Család(i) fa 6.jpg" alt="Családfa 6"></div>
+            </div>
+        </section>
 
-    <div class="galeria-kep-kontener reveal"><img src="assets/img/karkoto1.jpg" alt="Karkötő 1"></div>
-    <div class="galeria-kep-kontener reveal"><img src="assets/img/karkoto2.jpg" alt="Karkötő 2"></div>
-    <div class="galeria-kep-kontener reveal"><img src="assets/img/karkoto3.jpg" alt="Karkötő 3"></div>
-    <div class="galeria-kep-kontener reveal"><img src="assets/img/karkoto4.jpg" alt="Karkötő 4"></div>
-    <div class="galeria-kep-kontener reveal"><img src="assets/img/karkoto5.jpg" alt="Karkötő 5"></div>
-    <div class="galeria-kep-kontener reveal"><img src="assets/img/karkoto6.jpg" alt="Karkötő 6"></div>
-    <div class="galeria-kep-kontener reveal"><img src="assets/img/karkoto7.jpg" alt="Karkötő 7"></div>
-    <div class="galeria-kep-kontener reveal"><img src="assets/img/karkoto8.jpg" alt="Karkötő 8"></div>
-    <div class="galeria-kep-kontener reveal"><img src="assets/img/karkoto9.jpg" alt="Karkötő 9"></div>
-    <div class="galeria-kep-kontener reveal"><img src="assets/img/karkoto10.jpg" alt="Karkötő 10"></div>
-    <div class="galeria-kep-kontener reveal"><img src="assets/img/karkoto11.jpg" alt="Karkötő 11"></div>
-    <div class="galeria-kep-kontener reveal"><img src="assets/img/karkoto12.jpg" alt="Karkötő 12"></div>
-    <div class="galeria-kep-kontener reveal"><img src="assets/img/karkoto13.jpg" alt="Karkötő 13"></div>
+        <hr class="szekcio-valaszto">
 
-    <div class="galeria-kep-kontener reveal"><img src="assets/img/Család(i) fa 1.jpg" alt="Családfa 1"></div>
-    <div class="galeria-kep-kontener reveal"><img src="assets/img/Család(i) fa 2.jpg" alt="Családfa 2"></div>
-    <div class="galeria-kep-kontener reveal"><img src="assets/img/Család(i) fa 3.jpg" alt="Családfa 3"></div>
-    <div class="galeria-kep-kontener reveal"><img src="assets/img/Család(i) fa 4.jpg" alt="Családfa 4"></div>
-    <div class="galeria-kep-kontener reveal"><img src="assets/img/Család(i) fa 5.jpg" alt="Családfa 5"></div>
-    <div class="galeria-kep-kontener reveal"><img src="assets/img/Család(i) fa 6.jpg" alt="Családfa 6"></div>
-</div>
+        <section id="fa-galeria" class="reveal">
+            <h2 class="al-cim"><i class="fas fa-tree"></i> Fafaragások és dísztárgyak</h2>
+            <div class="teljes-galeria-grid">
+                <div class="galeria-kep-kontener reveal"><img src="assets/img/fa_1.jpg" alt="Fa munka 1"></div>
+                <div class="galeria-kep-kontener reveal"><img src="assets/img/fa_2.jpg" alt="Fa munka 2"></div>
+                <div class="galeria-kep-kontener reveal"><img src="assets/img/fa_3.jpg" alt="Fa munka 3"></div>
+                <div class="galeria-kep-kontener reveal"><img src="assets/img/fa_4.jpg" alt="Fa munka 4"></div>
+                <div class="galeria-kep-kontener reveal"><img src="assets/img/fa_5.jpg" alt="Fa munka 5"></div>
+                <div class="galeria-kep-kontener reveal"><img src="assets/img/fa_6.jpg" alt="Fa munka 6"></div>
+                <div class="galeria-kep-kontener reveal"><img src="assets/img/fa_7.jpg" alt="Fa munka 7"></div>
+                <div class="galeria-kep-kontener reveal"><img src="assets/img/fa_8.jpg" alt="Fa munka 8"></div>
+            </div>
+        </section>
+
+        <hr class="szekcio-valaszto">
+
+        <section id="karkoto-galeria" class="reveal" style="margin-bottom: 80px;">
+            <h2 class="al-cim"><i class="fas fa-gem"></i> Egyedi Karkötők</h2>
+            <div class="teljes-galeria-grid">
+                <div class="galeria-kep-kontener reveal"><img src="assets/img/karkoto1.jpg" alt="Karkötő 1"></div>
+                <div class="galeria-kep-kontener reveal"><img src="assets/img/karkoto2.jpg" alt="Karkötő 2"></div>
+                <div class="galeria-kep-kontener reveal"><img src="assets/img/karkoto3.jpg" alt="Karkötő 3"></div>
+                <div class="galeria-kep-kontener reveal"><img src="assets/img/karkoto4.jpg" alt="Karkötő 4"></div>
+                <div class="galeria-kep-kontener reveal"><img src="assets/img/karkoto5.jpg" alt="Karkötő 5"></div>
+                <div class="galeria-kep-kontener reveal"><img src="assets/img/karkoto6.jpg" alt="Karkötő 6"></div>
+                <div class="galeria-kep-kontener reveal"><img src="assets/img/karkoto7.jpg" alt="Karkötő 7"></div>
+                <div class="galeria-kep-kontener reveal"><img src="assets/img/karkoto8.jpg" alt="Karkötő 8"></div>
+                <div class="galeria-kep-kontener reveal"><img src="assets/img/karkoto9.jpg" alt="Karkötő 9"></div>
+                <div class="galeria-kep-kontener reveal"><img src="assets/img/karkoto10.jpg" alt="Karkötő 10"></div>
+                <div class="galeria-kep-kontener reveal"><img src="assets/img/karkoto11.jpg" alt="Karkötő 11"></div>
+                <div class="galeria-kep-kontener reveal"><img src="assets/img/karkoto12.jpg" alt="Karkötő 12"></div>
+                <div class="galeria-kep-kontener reveal"><img src="assets/img/karkoto13.jpg" alt="Karkötő 13"></div>
             </div>
         </section>
     </main>
 
     <footer>
-        <p>© 2024 Kézműves Portfólió</p>
+        <div class="footer-tartalom">
+            <p>© 2026 Kézműves Portfólió</p>
+            <div class="social-ikonok">
+                <a href="#" target="_blank" aria-label="Facebook"><i class="fab fa-facebook-f"></i></a>
+                <a href="#" target="_blank" aria-label="Instagram"><i class="fab fa-instagram"></i></a>
+                <a href="#" target="_blank" aria-label="Pinterest"><i class="fab fa-pinterest"></i></a>
+                <a href="mailto:info@kezmuvesoldal.hu" aria-label="Email"><i class="fas fa-envelope"></i></a>
+            </div>
+            <p>info@kezmuvesoldal.hu</p>
+        </div>
     </footer>
 
-<div id="lightbox" class="lightbox">
-    <span class="bezar" onclick="bezarLightbox()">&times;</span>
-    
-    <button class="lightbox-nav bal" id="prev-kep">&#10094;</button>
-    <img class="lightbox-tartalom" id="nagy-kep">
-    <button class="lightbox-nav jobb" id="next-kep">&#10095;</button>
-</div>
+    <div id="lightbox" class="lightbox">
+        <span class="bezar" onclick="bezarLightbox()">&times;</span>
+        <button class="lightbox-nav bal" id="prev-kep">&#10094;</button>
+        <img class="lightbox-tartalom" id="nagy-kep" alt="Nagyított kép">
+        <button class="lightbox-nav jobb" id="next-kep">&#10095;</button>
+    </div>
 
     <script src="assets/js/theme.js"></script>
     <script src="assets/js/nav.js"></script>
     <script src="assets/js/lightbox.js"></script>
     <script src="assets/js/loader.js"></script>
-</body>
+    </body>
 </html>
