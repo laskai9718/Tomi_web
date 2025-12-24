@@ -5,8 +5,8 @@
     /* Világos mód színei */
     --bg-color: #fdfaf6;
     --card-bg: rgb(225, 216, 255);
-    --accent-color: #606060;
-    --text-color: #606060;
+    --accent-color: #8d54ff;
+    --text-color: #000000;
     --white: #ffffff;
     --bubble-color: #5500ff;
     --transition: 0.3s ease;
@@ -805,12 +805,12 @@ nav ul li a.active-link {
 }
 
 footer {
-    background-color: var(--accent-color);
-    color: #ffffff;
+    color: #000000;
     padding: 50px 20px;
     text-align: center;
     margin-top: 60px;
     flex-shrink: 0;
+    background-color: var(--accent-color);
 }
 
 .social-ikonok {
@@ -827,7 +827,7 @@ footer {
     width: 45px;
     height: 45px;
     background-color: rgba(255, 255, 255, 0.1);
-    color: #ffffff;
+    color: #000000;
     border: 1px solid rgba(255, 255, 255, 0.2);
     border-radius: 50%;
     font-size: 1.2rem;
