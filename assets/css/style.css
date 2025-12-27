@@ -5,11 +5,12 @@
     /* Világos mód színei */
     --bg-color: #fdfaf6;
     --card-bg: rgb(225, 216, 255);
-    --accent-color: #8d54ff;
+    --accent-color: #6b2bff;
     --text-color: #000000;
     --white: #ffffff;
-    --bubble-color: #5500ff;
+    --bubble-color: #864aff;
     --transition: 0.3s ease;
+    --foot-color:#deccff;
 }
 
 [data-theme="dark"] {
@@ -20,6 +21,7 @@
     --text-color: #f0f0f0;
     --white: #1a1a1a;
     --bubble-color: #d4a373;
+    --foot-color: #d4a373;
 }
 
 /* Alap reset */
@@ -245,35 +247,64 @@ section {
     border-top: 1px solid rgba(0, 0, 0, 0.1);
     padding-top: 15px;
 }
+/* ==========================================================================
+   TUDJ MEG TÖBBET GOMBOK EGYSÉGESÍTÉSE
+   ========================================================================== */
 .tudj-meg-tobbet-btn {
     display: inline-flex;
     align-items: center;
+    justify-content: center;
     gap: 10px;
     margin-top: 15px;
     padding: 12px 25px;
-    background-color: transparent;
-    color: var(--accent-color) !important;
-    border: 2px solid var(--accent-color);
+    /* Teli háttér az üreges helyett */
+    background: var(--accent-color);
+    color: white !important;
+    border: none;
     border-radius: 50px;
     text-decoration: none;
     font-weight: 600;
     font-family: 'Quicksand', sans-serif;
-    transition: all 0.3s ease;
     cursor: pointer;
+    position: relative;
+    overflow: hidden;
+    transition: all 0.3s cubic-bezier(0.175, 0.885, 0.32, 1.275);
+    box-shadow: 0 4px 12px rgba(0, 0, 0, 0.1);
 }
 
 .tudj-meg-tobbet-btn i {
     transition: transform 0.3s ease;
+    font-size: 0.9rem;
 }
 
+/* Hover állapot: emelkedés és árnyék */
 .tudj-meg-tobbet-btn:hover {
-    background-color: var(--accent-color);
-    color: var(--white) !important;
-    box-shadow: 0 5px 15px rgba(0,0,0,0.1);
+    transform: translateY(-3px) scale(1.02);
+    filter: brightness(1.1);
+    box-shadow: 0 6px 18px rgba(0, 0, 0, 0.2);
 }
 
+/* A kis nyíl mozgása */
 .tudj-meg-tobbet-btn:hover i {
     transform: translateX(5px);
+}
+
+/* Csillanás effekt hozzáadása, hogy ugyanolyan legyen, mint a többi főgomb */
+.tudj-meg-tobbet-btn::after {
+    content: '';
+    position: absolute;
+    top: 0; left: -100%;
+    width: 100%; height: 100%;
+    background: linear-gradient(90deg, transparent, rgba(255, 255, 255, 0.2), transparent);
+}
+
+.tudj-meg-tobbet-btn:hover::after {
+    animation: csillan 0.6s forwards;
+}
+
+/* Sötét mód igazítás */
+[data-theme="dark"] .tudj-meg-tobbet-btn {
+    background: #a98467;
 }
 
 /* ==========================================================================
@@ -472,8 +503,36 @@ nav ul li a.active-link {
     scroll-behavior: smooth;
     width: 100%;
     padding: 10px 0;
+    scrollbar-width: none; /* Firefox-hoz */
+    -ms-overflow-style: none; /* IE-hez */
+}
+.galeria-csuszka::-webkit-scrollbar {
+    display: none; /* Chrome/Safari-hoz hogy ne legyen csúnya csík alul */
+}
+/* Hover állapot: Emelkedés, árnyék és keret megjelenése */
+.galeria-csuszka img:hover {
+    transform: translateY(-10px) scale(1.03); /* Megemelkedik és kicsit megnő */
+    box-shadow: 0 15px 30px rgba(0,0,0,0.2);
+    border-color: var(--accent-color); /* Kap egy vékony díszkeretet */
+    filter: brightness(1.05); /* Kicsit kivilágosodik */
 }
 
+/* Sötét mód igazítás */
+[data-theme="dark"] .galeria-csuszka img {
+    box-shadow: 0 5px 15px rgba(0,0,0,0.4);
+}
+
+[data-theme="dark"] .galeria-csuszka img:hover {
+    border-color: #a98467;
+}
+
+/* Ha mobilon nézik, kicsit kisebb legyen a kép, hogy elférjen */
+@media (max-width: 768px) {
+    .galeria-csuszka img {
+        width: 250px;
+        height: 350px;
+    }
+}
 .galeria-csuszka img {
     width: 280px;
     height: 200px;
@@ -600,6 +659,143 @@ nav ul li a.active-link {
 .bezar:hover {
     color: #ff4d4d;
     transform: rotate(90deg);
+}
+
+/* ==========================================================================
+   MANTRA VÁLASZTÓ (Kristály és Fonal) STÍLUSOK
+   ========================================================================== */
+
+.szin-magyarazat-kontener {
+    margin-top: 30px;
+    text-align: center;
+}
+
+.kombinalt-valaszto {
+    display: flex;
+    gap: 30px;
+    justify-content: center;
+    margin-bottom: 25px;
+}
+
+.valaszto-oszlop {
+    flex: 1;
+    background: rgba(var(--accent-color), 0.05);
+    padding: 20px;
+    border-radius: 20px;
+    border: 1px solid rgba(var(--accent-color), 0.1);
+}
+
+.valaszto-oszlop h4 {
+    margin-bottom: 20px;
+    font-size: 1.2rem;
+    color: var(--accent-color);
+    font-family: 'Playfair Display', serif;
+}
+
+/* Körök elrendezése */
+.szin-korok {
+    display: flex;
+    justify-content: center;
+    gap: 12px;
+    flex-wrap: wrap;
+    max-width: 400px;
+    margin: 0 auto;
+}
+
+/* KÖZÖS ALAP A KÖRÖKNEK */
+.szin-kor {
+    width: 42px;
+    height: 42px;
+    border-radius: 50%;
+    cursor: pointer;
+    transition: all 0.3s cubic-bezier(0.175, 0.885, 0.32, 1.275);
+    position: relative;
+    box-shadow: 0 4px 8px rgba(0,0,0,0.2);
+    border: 1px solid rgba(255,255,255,0.2);
+}
+
+/* --- KRISTÁLY HATÁS --- */
+.kristaly-korok .szin-kor {
+    /* Belső ragyogás */
+    background-image: radial-gradient(circle at 30% 30%, rgba(255,255,255,0.5) 0%, transparent 70%);
+}
+
+.kristaly-korok .szin-kor::before {
+    content: '';
+    position: absolute;
+    top: 6px;
+    left: 8px;
+    width: 12px;
+    height: 7px;
+    background: rgba(255, 255, 255, 0.4);
+    border-radius: 50%;
+    transform: rotate(-35deg);
+    filter: blur(1px);
+}
+
+/* --- FONÁL HATÁS --- */
+.fonal-korok .szin-kor {
+    /* Sodrott textil textúra */
+    background-image: 
+        repeating-linear-gradient(45deg, rgba(0,0,0,0.1) 0px, rgba(0,0,0,0.1) 1px, transparent 1px, transparent 3px),
+        repeating-linear-gradient(-45deg, rgba(255,255,255,0.1) 0px, rgba(255,255,255,0.1) 1px, transparent 1px, transparent 3px);
+}
+
+/* Interakciók */
+.szin-kor:hover {
+    transform: scale(1.15) translateY(-3px);
+    box-shadow: 0 8px 15px rgba(0,0,0,0.3);
+}
+
+.szin-kor.active {
+    transform: scale(1.2);
+    border: 2px solid var(--text-color);
+    z-index: 2;
+}
+
+/* INFOBOX ÉS EREDMÉNY */
+.szin-infobox {
+    margin-top: 25px;
+    padding: 25px;
+    border-radius: 20px;
+    background: var(--card-bg);
+    border: 2px solid transparent; /* JS színezi */
+    transition: all 0.4s ease;
+    box-shadow: 0 10px 30px rgba(0,0,0,0.08);
+}
+
+.mantra-kombinacio {
+    font-family: 'Playfair Display', serif;
+    font-size: 1.6rem;
+    font-weight: 700;
+    margin-bottom: 15px;
+    color: var(--accent-color);
+}
+
+#kristaly-kijelzo, #fonal-kijelzo {
+    padding: 2px 8px;
+    border-bottom: 2px dashed transparent;
+    transition: all 0.3s ease;
+}
+
+.szin-infobox p {
+    font-family: 'Quicksand', sans-serif;
+    font-size: 1.1rem !important;
+    line-height: 1.6;
+    font-style: italic;
+    color: var(--text-color);
+}
+
+/* Mobil nézet */
+@media (max-width: 768px) {
+    .kombinalt-valaszto {
+        flex-direction: column;
+        gap: 15px;
+    }
+    .szin-kor {
+        width: 38px;
+        height: 38px;
+    }
 }
 
 /* Animáció */
@@ -764,60 +960,77 @@ nav ul li a.active-link {
 /* ==========================================================================
    9. KAPCSOLAT ÉS LÁBLÉC (FOOTER)
    ========================================================================== */
-.email-form {
-    max-width: 500px;
-    margin: 0 auto;
+
+/* Kapcsolat szekció alapja */
+.kapcsolat-kontener {
+    max-width: 600px;
+    margin: 40px auto;
     background: var(--card-bg);
-    padding: 30px;
-    border-radius: 15px;
-    box-shadow: 0 5px 15px rgba(0,0,0,0.1);
+    padding: 40px 30px;
+    border-radius: 20px;
+    box-shadow: 0 10px 30px rgba(0,0,0,0.05);
+    text-align: center;
 }
 
-.input-csoport {
-    margin-bottom: 20px;
-    text-align: left;
+/* Kapcsolat gombok elrendezése - Egységesítve a 12. ponttal */
+.kapcsolat-gombok {
+    display: flex;
+    flex-direction: column;
+    gap: 15px;
+    margin: 25px 0;
+    align-items: center; /* Középre igazítja a gombokat */
 }
 
-.input-csoport label {
-    display: block;
-    margin-bottom: 8px;
-    font-weight: bold;
-    color: var(--accent-color);
+/* Ez a rész biztosítja, hogy a kapcsolat gombok is megkapják az egységes stílust */
+.kapcsolat-focimke {
+    min-width: 250px; /* Hogy szép szélesek legyenek */
 }
 
-.input-csoport input, 
-.input-csoport textarea {
-    width: 100%;
-    padding: 12px;
-    background-color: var(--bg-color);
+.kapcsolat-focimke.messenger {
+    background: #0084FF !important; /* Messenger kék - felülbírálja az egységes színt */
+}
+
+.kis-leiras {
+    font-size: 0.9rem;
+    font-style: italic;
+    opacity: 0.7;
     color: var(--text-color);
-    border: 1px solid rgba(0,0,0,0.1);
-    border-radius: 8px;
-    font-family: inherit;
-    font-size: 1rem;
-    transition: border-color 0.3s;
 }
 
-.input-csoport input:focus, 
-.input-csoport textarea:focus {
-    outline: none;
-    border-color: var(--accent-color);
-}
-
+/* --- LÁBLÉC (FOOTER) EGYSÉGESÍTVE --- */
 footer {
-    color: #000000;
+    background-color: var(--foot-color);
     padding: 50px 20px;
     text-align: center;
-    margin-top: 60px;
-    flex-shrink: 0;
-    background-color: var(--accent-color);
+    margin-top: 80px;
+    width: 100%;
 }
 
+.footer-tartalom {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    gap: 15px;
+}
+
+.footer-tartalom p {
+    margin: 0;
+    color: #000000;
+    font-weight: 500;
+}
+
+.footer-email {
+    font-weight: 700;
+    opacity: 0.6;
+    font-size: 0.9rem;
+}
+
+/* Közösségi ikonok a láblécben */
 .social-ikonok {
-    margin-bottom: 20px;
     display: flex;
     justify-content: center;
-    gap: 15px;
+    gap: 20px;
+    margin: 10px 0;
 }
 
 .social-ikonok a {
@@ -826,21 +1039,33 @@ footer {
     justify-content: center;
     width: 45px;
     height: 45px;
-    background-color: rgba(255, 255, 255, 0.1);
-    color: #000000;
-    border: 1px solid rgba(255, 255, 255, 0.2);
+    background-color: rgba(255, 255, 255, 0.4); /* Világosabb, hogy látszódjon a háttéren */
+    color: #000000 !important;
     border-radius: 50%;
     font-size: 1.2rem;
     transition: all 0.3s ease;
+    border: 1px solid rgba(0,0,0,0.05);
 }
 
 .social-ikonok a:hover {
-    background-color: #ffffff;
-    color: var(--accent-color);
+    background-color: var(--accent-color);
+    color: white !important;
     transform: translateY(-5px);
-    box-shadow: 0 5px 15px rgba(0,0,0,0.2);
+    box-shadow: 0 5px 15px rgba(0,0,0,0.1);
 }
 
+/* Mobil optimalizálás */
+@media (max-width: 480px) {
+    .kapcsolat-kontener {
+        padding: 30px 20px;
+        margin: 20px 15px;
+    }
+    
+    .kapcsolat-focimke {
+        width: 100%; /* Mobilon töltsék ki a szélességet */
+        min-width: unset;
+    }
+}
 /* ==========================================================================
    10. MANTRA ÜZENET (MODAL)
    ========================================================================== */
@@ -877,6 +1102,7 @@ footer {
     color: var(--text-color);
     padding: 10px;
 }
+
 
 /* ==========================================================================
    9. RESPONSIVE DESIGN (MOBIL NÉZET)
@@ -1008,42 +1234,74 @@ cite::before {
 }
 
 /* ==========================================================================
-   12.GOMBOK EGYSÉGES STÍLUSA
+   12. EGYSÉGES GOMB STÍLUSOK (Tisztább, elegánsabb)
    ========================================================================== */
-.kuld-gomb, .teljes-galeria-btn, .csuszka-gomb, 
-.theme-switch, #mantra-ok-gomb {
+
+/* ALAPSTÍLUS MINDEN GOMBHOZ */
+.teljes-galeria-btn, 
+.tervezo-gomb, 
+.kapcsolat-focimke,
+#mantra-ok-gomb,
+.csuszka-gomb, 
+.theme-switch {
     display: inline-flex;
     align-items: center;
     justify-content: center;
-    gap: 12px;
-    background: linear-gradient(135deg, var(--accent-color), #8b6b4d);
+    gap: 10px;
+    background: var(--accent-color); /* Egységes alapszín */
     color: white !important;
     border: none;
-    border-radius: 50px;
-    font-weight: bold;
     cursor: pointer;
-    transition: transform 0.3s ease-out, box-shadow 0.3s, filter 0.3s;
-    box-shadow: 0 4px 15px rgba(0, 0, 0, 0.2);
+    transition: all 0.3s cubic-bezier(0.175, 0.885, 0.32, 1.275);
     text-decoration: none;
+    box-shadow: 0 4px 12px rgba(0, 0, 0, 0.15);
+}
+
+/* 1. KATEGÓRIA: SZÖVEGES GOMBOK (Lekerekített "pill" forma) */
+.teljes-galeria-btn, 
+.tervezo-gomb, 
+.kapcsolat-focimke,
+#mantra-ok-gomb {
+    padding: 12px 28px;
+    border-radius: 50px;
+    font-weight: 600;
+    font-family: 'Quicksand', sans-serif;
+    font-size: 1rem;
+}
+
+/* 2. KATEGÓRIA: KÖR ALAKÚ GOMBOK */
+.csuszka-gomb, 
+.theme-switch {
+    width: 45px;
+    height: 45px;
+    border-radius: 50%;
+    font-size: 1.1rem;
+}
+
+/* HOVER HATÁSOK (Minden gombra egységesen) */
+.teljes-galeria-btn:hover, 
+.tervezo-gomb:hover, 
+.kapcsolat-focimke:hover,
+#mantra-ok-gomb:hover,
+.csuszka-gomb:hover, 
+.theme-switch:hover {
+    transform: translateY(-3px) scale(1.02);
+    box-shadow: 0 6px 20px rgba(0, 0, 0, 0.2);
+    filter: brightness(1.1);
+}
+
+/* KÜLÖNLEGES SZÍNEK (Ha szükséges az eltérés) */
+.kapcsolat-focimke.messenger {
+    background: #0084FF; /* A Messenger maradjon kék a felismerhetőség miatt */
+}
+
+/* FINOM CSILLANÁS EFFEKT (Csak a kiemelt gombokon) */
+.teljes-galeria-btn, .tervezo-gomb {
     position: relative;
     overflow: hidden;
 }
 
-[data-theme="dark"] .kuld-gomb, 
-[data-theme="dark"] .teljes-galeria-btn, 
-[data-theme="dark"] #mantra-ok-gomb {
-    background: linear-gradient(135deg, #a98467, #6d523b);
-}
-
-.kuld-gomb:hover, .teljes-galeria-btn:hover, 
-.theme-switch:hover, #mantra-ok-gomb:hover {
-    transform: translateY(-3px);
-    box-shadow: 0 8px 25px rgba(0, 0, 0, 0.3);
-    filter: brightness(1.1);
-}
-
-/* Csillogás effekt */
-.kuld-gomb::after, .teljes-galeria-btn::after {
+.teljes-galeria-btn::after, .tervezo-gomb::after {
     content: '';
     position: absolute;
     top: 0; left: -100%;
@@ -1051,7 +1309,7 @@ cite::before {
     background: linear-gradient(90deg, transparent, rgba(255, 255, 255, 0.2), transparent);
 }
 
-.kuld-gomb:hover::after, .teljes-galeria-btn:hover::after {
+.teljes-galeria-btn:hover::after, .tervezo-gomb:hover::after {
     animation: csillan 0.6s forwards;
 }
 
@@ -1059,19 +1317,17 @@ cite::before {
     100% { left: 100%; }
 }
 
-/* Lüktetés a galéria gombhoz */
-.teljes-galeria-btn { animation: luktetes 2.5s infinite ease-in-out; }
-.teljes-galeria-btn:hover { animation: none; transform: translateY(-3px) scale(1.03); }
-
-@keyframes luktetes {
-    0%, 100% { transform: scale(1); }
-    50% { transform: scale(1.03); }
-}
-
-/* Ikonok és egyedi méretek */
-.kuld-gomb, .teljes-galeria-btn, #mantra-ok-gomb { padding: 15px 35px; min-width: 200px; }
-.csuszka-gomb, .theme-switch { width: 50px; height: 50px; border-radius: 50%; }
-
+/* SÖTÉT MÓD VÁLTÓ IKONOK */
 .theme-switch .fa-sun { display: none; }
 [data-theme="dark"] .theme-switch .fa-moon { display: none; }
 [data-theme="dark"] .theme-switch .fa-sun { display: block; }
+
+/* SÖTÉT MÓD SZÍNEK (Visszafogottabb arany/barna) */
+[data-theme="dark"] .teljes-galeria-btn, 
+[data-theme="dark"] .tervezo-gomb, 
+[data-theme="dark"] .kapcsolat-focimke:not(.messenger),
+[data-theme="dark"] #mantra-ok-gomb,
+[data-theme="dark"] .csuszka-gomb, 
+[data-theme="dark"] .theme-switch {
+    background: #a98467;
+}

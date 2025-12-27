@@ -114,12 +114,15 @@
             <a href="galeria.html#fa-galeria" class="tudj-meg-tobbet-btn">Tudj meg többet</a>
         </article>
 
-        <article class="termek-kartya reveal">
-            <img src="assets/img/karkoto_csakra.jpg" alt="Csakra karkötő">
-            <h3><i class="fas fa-dharmachakra"></i> Csakra karkötők</h3>
-            <p>Energetizáló ékszerek válogatott ásványokból, a test és a lélek egyensúlyáért.</p>
-            <a href="galeria.html#csakra-galeria" class="tudj-meg-tobbet-btn">Tudj meg többet</a>
-        </article>
+<article class="termek-kartya reveal">
+    <img src="assets/img/karkoto_csakra.jpg" alt="Csakra karkötő">
+    <h3><i class="fas fa-dharmachakra"></i> Csakra karkötők</h3>
+    <p>Energetizáló ékszerek válogatott ásványokból, a test és a lélek egyensúlyáért.</p>
+    
+<a href="galeria.html#csakra-karkoto-tervezo" class="tervezo-gomb">
+    <i class="fas fa-magic"></i> Csakra karkötő tervezése
+</a>
+</article>
 
         <article class="termek-kartya reveal">
             <img src="assets/img/karkoto1.jpg" alt="Karkötő">
@@ -136,9 +139,11 @@
                 <button class="csuszka-gomb bal" onclick="mozgat(-1)">&#10094;</button>
                 <div class="galeria-csuszka" id="slider">
                     <img src="assets/img/Család(i) fa 1.jpg" alt="Munka 1">
+                    <img src="assets/img/Család(i) fa 2.jpg" alt="Családfa 2">
                     <img src="assets/img/fa_1.jpg" alt="Munka 2">
+                    <img src="assets/img/fa_2.jpg" alt="Fa munka 2">
                     <img src="assets/img/karkoto1.jpg" alt="Munka 3">
-                    <img src="assets/img/Család(i) fa 2.jpg" alt="Munka 4">
+                    <img src="assets/img/karkoto2.jpg" alt="Karkötő 2">
                 </div>
                 <button class="csuszka-gomb jobb" onclick="mozgat(1)">&#10095;</button>
             </div>
@@ -173,27 +178,26 @@
             </div>
         </section>
 
-        <section id="kapcsolat" class="reveal">
-            <h2>Kérj egyedi ajánlatot!</h2>
-            <form class="email-form">
-                <div class="input-csoport">
-                    <label for="nev"><i class="fas fa-user"></i> Neved</label>
-                    <input type="text" id="nev" placeholder="Kovács Anna" required>
-                </div>
-                <div class="input-csoport">
-                    <label for="email"><i class="fas fa-envelope"></i> E-mail címed</label>
-                    <input type="email" id="email" placeholder="pelda@email.com" required>
-                </div>
-                <div class="input-csoport">
-                    <label for="uzenet"><i class="fas fa-pen-nib"></i> Üzeneted</label>
-                    <textarea id="uzenet" rows="5" placeholder="Írd le az elképzelésed..." required></textarea>
-                </div>
-                <button type="submit" class="kuld-gomb">
-                    <span>Ajánlatot kérek</span>
-                    <i class="fas fa-paper-plane"></i>
-                </button>
-            </form>
-        </section>
+<section id="kapcsolat" class="reveal">
+    <div class="kapcsolat-kontener">
+        <h2>Vedd fel velem a kapcsolatot!</h2>
+        <p>Kérdésed van, vagy egyedi alkotást szeretnél rendelni? Keress bizalommal!</p>
+        
+        <div class="kapcsolat-gombok">
+            <a href="mailto:info@kezmuvesoldal.hu?subject=Érdeklődés - Csodák Erdeje" class="kapcsolat-focimke">
+                <i class="fas fa-envelope"></i>
+                <span>Írj nekem e-mailt</span>
+            </a>
+
+            <a href="https://m.me/FELHASZNALONEVED" target="_blank" class="kapcsolat-focimke messenger">
+                <i class="fab fa-facebook-messenger"></i>
+                <span>Messenger üzenet</span>
+            </a>
+        </div>
+        
+        <p class="kis-leiras">Általában 24 órán belül válaszolok.</p>
+    </div>
+</section>
     </main>
 <div id="mantra-modal" class="modal-hatter">
     <div class="modal-tartalom">
@@ -206,16 +210,23 @@
         <button id="mantra-ok-gomb">Köszönöm</button>
     </div>
 </div>
-    <footer>
-        <div class="footer-tartalom">
-            <p>© 2026 Kézműves Portfólió</p>
-            <div class="social-ikonok">
-                <a href="#"><i class="fab fa-facebook-f"></i></a>
-                <a href="#"><i class="fab fa-instagram"></i></a>
-                <a href="mailto:info@kezmuvesoldal.hu"><i class="fas fa-envelope"></i></a>
-            </div>
+<footer>
+    <div class="footer-tartalom">
+        <p>© 2026 Kézműves Portfólió - Csodák Erdeje</p>
+        <div class="social-ikonok">
+            <a href="https://www.facebook.com/PROFILOD" target="_blank" aria-label="Facebook">
+                <i class="fab fa-facebook-f"></i>
+            </a>
+            <a href="https://www.instagram.com/PROFILOD" target="_blank" aria-label="Instagram">
+                <i class="fab fa-instagram"></i>
+            </a>
+            <a href="https://www.tiktok.com/@PROFILOD" target="_blank" aria-label="TikTok">
+                <i class="fab fa-tiktok"></i>
+            </a>
         </div>
-    </footer>
+        <p class="footer-email">info@kezmuvesoldal.hu</p>
+    </div>
+</footer>
 
     <div id="lightbox" class="lightbox">
         <span class="bezar" onclick="bezarLightbox()">&times;</span>

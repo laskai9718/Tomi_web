@@ -1,56 +1,54 @@
-// 5. SLIDER (CSÚSZKA) MOZGATÁSA ÉS AUTOMATA LEJÁTSZÁS
+// 5. SLIDER (CSÚSZKA) MOZGATÁSA
 const slider = document.getElementById('slider');
 let autoPlayInterval;
 
 function mozgat(irany) {
     if (!slider) return;
     
-    // Kiszámoljuk egy kép szélességét a közzel együtt
     const elsoKep = slider.querySelector('img');
     if (!elsoKep) return;
     
-    const kepSzelesseg = elsoKep.clientWidth + 20; // Kép szélessége + a CSS-ben megadott 20px gap
+    // Pontos szélesség számítás: a kép szélessége + a gap (köz)
+    const gap = parseInt(window.getComputedStyle(slider).columnGap) || 20;
+    const lepes = elsoKep.offsetWidth + gap;
     
-    // Görgetés
-    slider.scrollBy({
-        left: irany * kepSzelesseg,
-        behavior: 'smooth'
-    });
+    // Mennyi van még hátra a görgetésből
+    const maxScroll = slider.scrollWidth - slider.clientWidth;
 
-    // Ha a végére értünk, ugorjon vissza az elejére (végtelenített hatás)
-    if (irany === 1 && (slider.scrollLeft + slider.clientWidth) >= slider.scrollWidth - 5) {
+    if (irany === 1 && slider.scrollLeft >= maxScroll - 5) {
+        // Ha a legvégén vagyunk és jobbra mennénk, ugorjon az elejére
         slider.scrollTo({ left: 0, behavior: 'smooth' });
+    } else if (irany === -1 && slider.scrollLeft <= 5) {
+        // Ha az elején vagyunk és balra mennénk, ugorjon a végére
+        slider.scrollTo({ left: maxScroll, behavior: 'smooth' });
+    } else {
+        // Normál görgetés
+        slider.scrollBy({
+            left: irany * lepes,
+            behavior: 'smooth'
+        });
     }
 }
 
-// AUTOMATA LEJÁTSZÁS INDÍTÁSA
+// AUTOMATA LEJÁTSZÁS FUNKCIÓK
 function startAutoPlay() {
+    stopAutoPlay(); // Biztonsági törlés, ne fusson több egyszerre
     autoPlayInterval = setInterval(() => {
         mozgat(1);
-    }, 3000); // 3 másodpercenként vált
+    }, 4000); // 4 másodperc barátságosabb idő
 }
 
-// AUTOMATA LEJÁTSZÁS MEGÁLLÍTÁSA (ha a felhasználó beleavatkozik)
 function stopAutoPlay() {
     clearInterval(autoPlayInterval);
 }
 
-// Eseményfigyelők az indításhoz és leállításhoz
 if (slider) {
     startAutoPlay();
 
-    // Ha az egér felette van, álljon meg
+    // Megállás ha fölé visszük az egeret
     slider.addEventListener('mouseenter', stopAutoPlay);
-    
-    // Ha elviszi az egeret, induljon újra
     slider.addEventListener('mouseleave', startAutoPlay);
 
-    // Ha kézzel kattint a gombokra, akkor is álljon meg egy időre, ne ugorjon rögtön tovább
-    document.querySelectorAll('.csuszka-gomb').forEach(gomb => {
-        gomb.addEventListener('click', () => {
-            stopAutoPlay();
-            // 5 másodperc szünet után újraindul az automata mód
-            setTimeout(startAutoPlay, 5000);
-        });
-    });
+    // Érintőképernyős (mobil) javítás: ha belepörgetnek kézzel, álljon le az automata
+    slider.addEventListener('touchstart', stopAutoPlay, {passive: true});
 }
