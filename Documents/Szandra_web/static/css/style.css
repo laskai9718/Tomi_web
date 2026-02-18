@@ -2,40 +2,54 @@
    1. ALAPBEÁLLÍTÁSOK & VÁLTOZÓK
    ========================================= */
 :root {
-    --gold: #000000;
-    --rose: #ffc400;
-    --marble-white: #ffe9e9;
-    --dark-text: #333;
-    --gold-gradient: linear-gradient(to right, #BF953F, #FCF6BA, #B38728, #FBF5B7, #AA771C);
-    --glass-bg: rgba(255, 255, 255, 0.75);
+    /* Színpaletta finomítása */
+    --gold: #d4af37;           /* Klasszikus arany */
+    --gold-light: #f9f1d7;     /* Nagyon világos arany a háttereknek */
+    --dark-text: #1a1a1a;      /* Majdnem fekete a jó olvashatóságért */
+    --light-gray: #f8f9fa;     /* Finom szürke az elválasztáshoz */
+    
+    /* Gradiens a csillogóbb hatásért */
+    --gold-gradient: linear-gradient(135deg, #bf953f, #fcf6ba, #b38728, #fbf5b7, #aa771c);
+    
+    /* Üveg hatás alapja */
+    --glass-bg: rgba(255, 255, 255, 0.85);
+    --glass-border: rgba(212, 175, 55, 0.3);
 }
 
 * {
     margin: 0;
     padding: 0;
     box-sizing: border-box;
+    /* Simább görgetés az egész oldalon */
+    scroll-behavior: smooth; 
 }
 
 body {
     font-family: 'Montserrat', sans-serif;
-    font-size: 18px; /* 16px-ről növelve */
+    font-size: 16px; /* A 18px néha túl nagy asztali gépen, a 16px a standard */
     color: var(--dark-text);
-    line-height: 1.8; /* Szellősebb sorok */
+    line-height: 1.6;
+    background-color: #fdc5ff; /* Valóban tiszta fehér háttér */
+    overflow-x: hidden; /* Megakadályozza az oldal irányú elcsúszást */
 }
 
+/* Kiemelés színe, amikor a felhasználó kijelöl egy szöveget */
+::selection {
+    background-color: var(--gold);
+    color: #fdc5ff;
+}
 /* =========================================
-   2. GLOBÁLIS 3D RÉTEGEK (FIXÁLT)
+   2. GLOBÁLIS RÉTEGEK (FIXÁLT)
    ========================================= */
 .fixed-3d-bg {
     position: fixed;
-    top: -10%;
-    left: -10%;
-    width: 120%;
-    height: 120%;
-    background-color: #f9beff;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    /* Lila helyett egy nagyon halvány krém vagy fehér, ami nem vonja el a figyelmet */
+    
     z-index: -2;
-    transform: translateZ(-100px) scale(1.2);
-    will-change: transform;
 }
 
 .fixed-gold-overlay {
@@ -44,7 +58,8 @@ body {
     left: 0;
     width: 100%;
     height: 100%;
-    background: radial-gradient(circle, rgba(212,175,55,0.08) 0%, transparent 80%);
+    /* Finomítottunk rajta: lágyabb arany ragyogás a sarkokból */
+    background: radial-gradient(circle at center, transparent 0%, rgba(212,175,55,0.05) 100%);
     z-index: -1;
     pointer-events: none;
 }
@@ -54,15 +69,15 @@ body {
    ========================================= */
 .glass-effect {
     background: var(--glass-bg);
-    backdrop-filter: blur(8px);
-    -webkit-backdrop-filter: blur(8px);
-    border: 1px solid rgba(212, 175, 55, 0.2);
-    box-shadow: 0 15px 35px rgba(0, 0, 0, 0.05);
-    border-radius: 15px;
+    backdrop-filter: blur(12px); /* Erősebb homályosítás a prémium érzetért */
+    -webkit-backdrop-filter: blur(12px);
+    border: 1px solid var(--glass-border);
+    box-shadow: 0 20px 40px rgba(0, 0, 0, 0.06);
+    border-radius: 20px;
 }
 
 section {
-    padding: 100px 10%;
+    padding: 80px 5%; /* Kicsit kisebb padding, több hely a tartalomnak */
     text-align: center;
     max-width: 1200px;
     margin: 0 auto;
@@ -72,35 +87,82 @@ section {
 
 h1, h2 {
     font-family: 'Montserrat', sans-serif;
-    font-size: 3rem; /* Megnövelt méret */
-    font-weight: 400; /* Vékonyabb betűk elegánsabbak */
+    font-size: 2.5rem; /* 3rem helyett 2.5rem, így elegánsabb marad */
+    font-weight: 300; /* Vékonyabb = modernebb */
     color: var(--gold);
     margin-bottom: 30px;
     text-transform: uppercase;
-    letter-spacing: 5px; /* Még szellősebb betűköz */
+    letter-spacing: 6px;
 }
 
-/* A főcím a nyitóképen legyen kiemelkedő */
+/* Hero (Főcím) méretek finomhangolása */
 .hero-content h1 {
-    font-size: 4.5rem;
+    font-size: clamp(2.5rem, 8vw, 4rem); /* Rugalmas méret: mobilon kisebb, gépen nagyobb */
+    margin-bottom: 10px;
 }
-/* A főoldali szöveg a logó alatt */
+
 .hero-content p {
-    font-family: 'Montserrat', sans-serif; /* Itt hivatkozol a beidézett betűre */
-    font-size: 3.5rem;  /* Az írott betűknek nagyobb méret kell */
+    font-family: 'Dancing Script', cursive; /* Ha az alcím írott betűs */
+    font-size: clamp(1.5rem, 5vw, 2.5rem);
     color: var(--dark-text);
-    text-transform: none; /* Fontos: ne legyen csupa nagybetű! */
-    margin-top: 15px;
+    margin-top: 10px;
 }
 
-/* A neved a Rólam szekcióban */
+/* Animált keret doboz - Precízebb beállítás */
+.animated-border-box {
+    position: relative;
+    max-width: 850px;
+    margin: 50px auto;
+    padding: 2px; /* Vékonyabb, elegánsabb keret */
+    background: transparent;
+    border-radius: 22px;
+    overflow: hidden; 
+    z-index: 1;
+}
+
+.animated-border-box::before {
+    content: '';
+    position: absolute;
+    width: 150%;
+    height: 150%;
+    /* Lassabb, selymesebb átmenet */
+    background: conic-gradient(
+        from 0deg,
+        transparent 0%,
+        var(--gold) 25%,
+        transparent 50%,
+        var(--gold) 75%,
+        transparent 100%
+    );
+    top: -25%;
+    left: -25%;
+    animation: rotate-border 8s linear infinite;
+    z-index: -1;
+}
+
+@keyframes rotate-border {
+    from { transform: rotate(0deg); }
+    to { transform: rotate(360deg); }
+}
+
+.about-text.glass-effect {
+    background: rgba(255, 255, 255, 0.9); /* Majdnem fehér a jobb olvashatóságért */
+    padding: 50px 40px;
+    border-radius: 20px;
+    border: none;
+    text-align: center;
+}
 .about-text h2 {
-    font-family: 'Montserrat', sans-serif;
-    font-size: 4rem;
-    color: var(--gold);
-    text-transform: none;
+    margin-bottom: 15px; /* Távolság a cím és a név között */
 }
 
+.about-text p strong {
+    display: block;      /* Külön sorba teszi, ha nem lenne ott */
+    font-size: 1.4rem;   /* Kicsit nagyobb, mint a többi szöveg */
+    color: var(--dark-text);
+    margin-bottom: 10px;
+    font-weight: 600;    /* Félkövér */
+}
 /* =========================================
    4. NAVIGÁCIÓ
    ========================================= */
@@ -109,16 +171,16 @@ nav {
     display: flex;
     justify-content: space-between;
     align-items: center;
-    padding: 30px 5%; 
+    padding: 40px 5%; /* 30px-ről növelve - tágasabb érzet */
     background: rgba(255, 255, 255, 0.95);
     backdrop-filter: blur(10px);
-    border-bottom: 1px solid var(--gold);
+    border-bottom: 1px solid rgba(212, 175, 55, 0.3); /* Halványabb arany szegély */
     position: fixed; 
     top: 0;
-    left: 0; /* Biztosítjuk, hogy balról induljon */
+    left: 0;
     width: 100%;
     z-index: 1000;
-    transition: all 0.4s cubic-bezier(0.4, 0, 0.2, 1);
+    transition: all 0.4s ease;
 }
 
 /* Összezsugorodott állapot görgetés után */
@@ -138,21 +200,27 @@ nav.scrolled {
     padding: 0;
 }
 
-/* Navigációs linkek animációja */
+/* Navigációs linkek alapja */
 .nav-links a {
     text-decoration: none;
-    color: var(--dark-text);
-    font-weight: 500;
+    color: #333; /* Alap sötét szín */
+    font-weight: 600; /* Kicsit vastagabb betűk */
     position: relative;
-    padding: 5px 0;
-    transition: 0.3s;
-    white-space: nowrap; /* Megakadályozza, hogy a szöveg több sorba törjön */
-    font-size: 1.1rem; /* Kicsit nagyobb betűk */
-    letter-spacing: 1.5px;
-    text-transform: uppercase; /* Elegánsabb hatás */
+    padding: 8px 0;
+    transition: all 0.3s ease;
+    font-size: 1.2rem; /* Nagyobb betűméret */
+    letter-spacing: 2px;
+    text-transform: uppercase;
 }
 
-/* Arany vonal animáció */
+/* Hover (amikor az egeret ráviszed) ÉS Active (amikor rákattintasz) */
+.nav-links a:hover, 
+.nav-links a:active {
+    color: #d4af37; /* Arany színre vált a szöveg */
+    transform: translateY(-2px); /* Kicsit megemelkedik */
+}
+
+/* Az arany vonal, ami alul megjelenik */
 .nav-links a::after {
     content: '';
     position: absolute;
@@ -160,26 +228,27 @@ nav.scrolled {
     left: 0;
     width: 0;
     height: 2px;
-    background: var(--gold-gradient);
+    background: #d4af37; /* Tiszta arany szín */
     transition: width 0.3s ease;
-}
-
-.nav-links a:hover {
-    color: var(--gold);
 }
 
 .nav-links a:hover::after {
     width: 100%;
 }
 
-/* Logó beállítások */
 .logo-img {
-    height: 65px; 
+    height: 80px; /* 65px-ről növelve */
     transition: height 0.4s ease;
 }
 
+nav.scrolled {
+    padding: 15px 5%; /* 10px-ről növelve */
+    background: white;
+    box-shadow: 0 5px 20px rgba(0,0,0,0.1);
+}
+
 nav.scrolled .logo-img {
-    height: 45px;
+    height: 55px; /* 45px-ről növelve */
 }
 /* =========================================
    5. HEADER / HERO
@@ -189,131 +258,428 @@ nav.scrolled .logo-img {
     display: flex;
     justify-content: center;
     align-items: center;
-    perspective: 1000px;
-    text-align: center;
+    position: relative;
+    overflow: hidden;
+    /* Egy nagyon halvány gradiens, ami mélységet ad a fehér háttérnek */
+    
 }
 
 .hero-content {
-    transform-style: preserve-3d;
-    z-index: 2;
+    text-align: center;
+    z-index: 10;
+    padding: 0 20px;
 }
 
 .floating-lashes {
-    width: 400px; /* Jelentősen megnövelve */
-    filter: sepia(1) saturate(5) brightness(0.8) drop-shadow(0 0 20px rgba(212, 175, 55, 0.3));
-    animation: luxuryFloat 5s ease-in-out infinite;
-    margin-bottom: 40px; /* Több hely a logó és a felirat között */
+    /* Rugalmas méretezés: mobilon kisebb, asztali gépen max 350px */
+    width: clamp(200px, 50vw, 350px); 
+    margin-bottom: 30px;
+    filter: drop-shadow(0 15px 25px rgba(212, 175, 55, 0.15));
+    
+    /* Automatikus lebegés */
+    animation: autoFloat 5s ease-in-out infinite; /* 4 helyett 5mp: még nyugodtabb */
 }
 
-@keyframes luxuryFloat {
-    0%, 100% { transform: translateY(0) rotateX(0); opacity: 0.9; }
-    50% { transform: translateY(-15px) rotateX(10deg); opacity: 1; }
+/* Szövegek megjelenése betöltéskor */
+.hero-content h1 {
+    font-size: clamp(2.5rem, 10vw, 4.5rem);
+    color: var(--gold);
+    text-transform: uppercase;
+    letter-spacing: 8px;
+    margin-bottom: 15px;
+    opacity: 0;
+    animation: fadeInSlide 1.5s cubic-bezier(0.22, 1, 0.36, 1) forwards;
 }
 
+.hero-content p {
+    font-family: 'Dancing Script', cursive;
+    font-size: clamp(1.5rem, 5vw, 2.5rem);
+    color: var(--dark-text);
+    opacity: 0;
+    /* Egy kis késleltetés a cím után */
+    animation: fadeInSlide 1.5s cubic-bezier(0.22, 1, 0.36, 1) forwards 0.4s;
+}
+
+/* --- ANIMÁCIÓK --- */
+
+/* Lágy lebegés */
+@keyframes autoFloat {
+    0%, 100% {
+        transform: translateY(0) rotate(0deg);
+    }
+    50% {
+        transform: translateY(-15px) rotate(1deg); /* Egy minimális dőlés életszerűbbé teszi */
+    }
+}
+
+/* Elegáns beúszás */
+@keyframes fadeInSlide {
+    0% {
+        opacity: 0;
+        transform: translateY(30px) scale(0.95);
+        filter: blur(10px);
+    }
+    100% {
+        opacity: 1;
+        transform: translateY(0) scale(1);
+        filter: blur(0);
+    }
+}
 /* =========================================
-   6. ÁRLISTA & KÁRTYÁK
+   6. ÁRLISTA & KÁRTYÁK - FELTURBÓZVA
    ========================================= */
 .price-grid {
     display: grid;
-    grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+    grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
     gap: 30px;
-    margin-top: 40px;
+    margin-top: 50px;
+    perspective: 1000px;
 }
 
 .price-card {
-    padding: 40px 20px;
-    transition: all 0.4s cubic-bezier(0.175, 0.885, 0.32, 1.275);
-    display: flex;
-    flex-direction: column;
-    align-items: center;
+    padding: 50px 30px;
+    position: relative;
+    border: 1px solid rgba(212, 175, 55, 0.1);
+    transition: all 0.5s cubic-bezier(0.23, 1, 0.32, 1);
+    overflow: hidden;
+}
+
+/* Kiemelt kártya (2D) egy kis extra arany csillogást kap */
+.price-card.featured {
+    border: 1px solid rgba(212, 175, 55, 0.5);
+    box-shadow: 0 20px 40px rgba(212, 175, 55, 0.1);
 }
 
 .price-card:hover {
-    transform: translateY(-10px) scale(1.02);
-    border-color: var(--gold);
+    transform: translateY(-15px);
+    border-color: #d4af37;
+    box-shadow: 0 25px 50px rgba(212, 175, 55, 0.2);
+}
+
+.card-icon {
+    font-size: 2.5rem;
+    margin-bottom: 20px;
+    filter: drop-shadow(0 0 10px rgba(212, 175, 55, 0.3));
+}
+
+.price-card h3 {
+    font-size: 1.8rem;
+    color: #000;
+    margin-bottom: 15px;
+    letter-spacing: 1px;
+}
+
+.description {
+    font-size: 0.95rem;
+    color: #666;
+    margin-bottom: 20px;
+    min-height: 50px; /* Hogy egyforma magasak legyenek a kártyák */
+}
+
+.duration {
+    font-size: 0.85rem;
+    text-transform: uppercase;
+    color: #d4af37;
+    font-weight: 600;
+    margin-bottom: 10px;
 }
 
 .price {
-    font-size: 2rem; /* Feltűnőbb ár */
+    font-size: 2.2rem;
     font-family: 'Playfair Display', serif;
-    font-weight: bold;
-    color: var(--gold);
-    margin-top: 15px;
+    font-weight: 700;
+    color: #000;
+    border-top: 1px solid rgba(212, 175, 55, 0.2);
+    padding-top: 15px;
+    width: 100%;
 }
-.price-card h3 {
-    font-size: 1.6rem;
-    margin-bottom: 10px;
+
+/* "Legnépszerűbb" matrica */
+.badge {
+    position: absolute;
+    top: 20px;
+    right: -30px;
+    background: #d4af37;
+    color: white;
+    padding: 5px 35px;
+    font-size: 0.7rem;
+    font-weight: bold;
+    transform: rotate(45deg);
+    text-transform: uppercase;
 }
 /* =========================================
-   7. GALÉRIA & HÁZIREND
+   7. GALÉRIA & HÁZIREND - PRÉMIUM STÍLUS
    ========================================= */
+
+/* GALÉRIA */
 .gallery-container {
     display: grid;
-    grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+    grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
     gap: 20px;
-    padding: 20px 0;
+    padding: 40px 0;
 }
 
 .gallery-item {
+    position: relative;
+    height: 450px; /* Megemelt magasság az elegánsabb arányokért */
+    border-radius: 20px;
     overflow: hidden;
-    padding: 0;
-    transition: 0.4s;
+    cursor: pointer;
+    box-shadow: 0 10px 30px rgba(0,0,0,0.05);
 }
 
 .gallery-item img {
     width: 100%;
-    height: 300px;
+    height: 100%;
     object-fit: cover;
-    display: block;
-    transition: transform 0.6s ease;
+    /* Extra lassú zoom effekt */
+    transition: transform 1.2s cubic-bezier(0.165, 0.84, 0.44, 1);
 }
 
-.gallery-item:hover img { transform: scale(1.1); }
+.gallery-overlay {
+    position: absolute;
+    inset: 0; /* modern shorthand a top/left/right/bottom: 0-ra */
+    background: linear-gradient(to top, rgba(0,0,0,0.7) 0%, transparent 70%);
+    display: flex;
+    justify-content: center;
+    align-items: flex-end; /* A szöveg alulról úszik be */
+    padding-bottom: 40px;
+    opacity: 0;
+    transition: all 0.5s ease;
+}
 
+.gallery-overlay span {
+    color: #fff;
+    font-size: 1.2rem;
+    font-weight: 300;
+    letter-spacing: 3px;
+    text-transform: uppercase;
+    transform: translateY(30px);
+    transition: transform 0.6s cubic-bezier(0.23, 1, 0.32, 1);
+}
+
+.gallery-item:hover img {
+    transform: scale(1.08);
+}
+
+.gallery-item:hover .gallery-overlay {
+    opacity: 1;
+}
+
+.gallery-item:hover .gallery-overlay span {
+    transform: translateY(0);
+}
+
+/* HÁZIREND MODERNIZÁLÁSA */
 .policy-box {
-    max-width: 700px;
-    margin: 0 auto;
+    max-width: 900px;
+    margin: 60px auto;
     padding: 50px;
+    background: var(--glass-bg);
+    border: 1px solid var(--glass-border);
+    border-radius: 30px;
+    box-shadow: 0 20px 50px rgba(0,0,0,0.03);
 }
 
-.policy-box ul {
-    list-style: none;
+.policy-grid {
+    display: flex;
+    flex-direction: column;
+    gap: 20px;
+}
+
+.policy-item {
+    display: flex;
+    align-items: center;
+    gap: 25px;
+    padding: 25px;
+    background: rgba(255, 255, 255, 0.5);
+    border-radius: 20px;
+    border: 1px solid transparent;
+    transition: all 0.4s cubic-bezier(0.4, 0, 0.2, 1);
+}
+
+.policy-item:hover {
+    background: #fff;
+    border-color: rgba(212, 175, 55, 0.2);
+    transform: translateX(15px);
+    box-shadow: 10px 10px 30px rgba(0,0,0,0.02);
+}
+
+.policy-icon {
+    font-size: 1.5rem;
+    color: var(--gold);
+    min-width: 60px;
+    height: 60px;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    background: #fff;
+    border-radius: 50%;
+    box-shadow: 0 5px 15px rgba(212, 175, 55, 0.1);
+}
+
+.policy-text {
     text-align: left;
 }
 
-.policy-box li {
+.policy-text h3 {
+    font-size: 1.1rem;
+    color: var(--dark-text);
+    font-weight: 600;
+    margin-bottom: 5px;
+}
+
+.policy-text p {
+    font-size: 0.9rem;
+    color: #777;
+    line-height: 1.6;
+}
+
+/* KAPCSOLAT SZEKCIÓ */
+.contact-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(320px, 1fr));
+    gap: 40px;
+    margin-top: 50px;
+}
+
+.contact-info {
+    text-align: left;
+    padding: 40px;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+}
+
+.contact-info p {
+    font-size: 1rem;
     margin-bottom: 15px;
-    border-bottom: 1px dashed var(--rose);
-    padding-bottom: 10px;
-}
-
-/* =========================================
-   8. GOMBOK & CTA
-   ========================================= */
-.cta-button {
-    background: var(--gold-gradient);
-    color: #333;
-    padding: 15px 35px;
-    border-radius: 50px;
-    text-decoration: none;
-    font-weight: bold;
-    display: inline-block;
+    color: var(--dark-text);
     transition: 0.3s;
-    box-shadow: 0 10px 20px rgba(170, 119, 28, 0.2);
-    border: none;
 }
 
-.cta-button:hover {
-    transform: scale(1.05);
-    box-shadow: 0 15px 25px rgba(170, 119, 28, 0.4);
+.contact-info p i {
+    color: var(--gold);
+    width: 30px;
+    font-size: 1.2rem;
 }
 
+.map-container {
+    border-radius: 25px;
+    overflow: hidden;
+    box-shadow: 0 15px 40px rgba(0,0,0,0.1);
+}
+/* =========================================
+   8. GOMBOK & CTA (Call to Action)
+   ========================================= */
 .cta-divider {
-    padding: 60px 0;
+    padding: 80px 0;
     text-align: center;
     margin: 40px 0;
 }
 
+.cta-button {
+    background: var(--gold-gradient);
+    color: #000000; /* Fehér szöveg jobban mutat az aranyon */
+    padding: 18px 45px;
+    border-radius: 50px;
+    text-decoration: none;
+    font-weight: 600;
+    font-size: 1.1rem;
+    letter-spacing: 1px;
+    display: inline-flex; /* Hogy az ikon és szöveg jól illeszkedjen */
+    align-items: center;
+    justify-content: center;
+    transition: all 0.4s cubic-bezier(0.175, 0.885, 0.32, 1.275);
+    box-shadow: 0 10px 20px rgba(212, 175, 55, 0.3);
+    border: none;
+    animation: pulse-gold 2s infinite;
+    cursor: pointer;
+}
+
+.cta-button i {
+    margin-right: 12px;
+    font-size: 1.2rem;
+}
+
+.cta-button:hover {
+    transform: scale(1.08) translateY(-3px);
+    box-shadow: 0 15px 30px rgba(212, 175, 55, 0.5);
+    color: #fff;
+}
+
+@keyframes pulse-gold {
+    0% { box-shadow: 0 0 0 0 rgba(212, 175, 55, 0.5); }
+    70% { box-shadow: 0 0 0 20px rgba(212, 175, 55, 0); }
+    100% { box-shadow: 0 0 0 0 rgba(212, 175, 55, 0); }
+}
+
+/* =========================================
+   9. IKONOK EGYSÉGESÍTÉSE (Globális)
+   ========================================= */
+
+/* Navigációs ikonok */
+.nav-links i {
+    margin-right: 10px;
+    font-size: 0.85rem;
+    color: var(--gold);
+    transition: transform 0.3s ease;
+}
+
+.nav-links a:hover i {
+    transform: scale(1.3) rotate(10deg);
+}
+
+/* Árlista kártya ikonok */
+.card-icon i {
+    color: var(--gold);
+    font-size: 2.8rem;
+    filter: drop-shadow(0 5px 10px rgba(212, 175, 55, 0.2));
+}
+
+/* Házirend ikonok */
+.policy-icon {
+    min-width: 55px;
+    height: 55px;
+    background: #fff;
+    border-radius: 50%;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    box-shadow: 0 8px 20px rgba(0,0,0,0.05);
+}
+
+.policy-icon i {
+    font-size: 1.4rem;
+    color: var(--gold);
+    transition: transform 0.6s cubic-bezier(0.4, 0, 0.2, 1);
+}
+
+.policy-item:hover .policy-icon i {
+    transform: rotate(360deg) scale(1.1);
+}
+
+/* Kapcsolati ikonok */
+.contact-info p {
+    display: flex;
+    align-items: center;
+    gap: 15px;
+    margin-bottom: 15px;
+    font-size: 1rem;
+}
+
+.contact-info i {
+    color: var(--gold);
+    width: 25px; /* Fix szélesség az igazításhoz */
+    text-align: center;
+    font-size: 1.2rem;
+    transition: all 0.3s ease;
+}
+
+.contact-info p:hover i {
+    transform: scale(1.3);
+    filter: drop-shadow(0 0 5px rgba(212, 175, 55, 0.5));
+}
 /* =========================================
    9. PRELOADER & REVEAL
    ========================================= */
@@ -323,7 +689,7 @@ nav.scrolled .logo-img {
     left: 0;
     width: 100%;
     height: 100vh;
-    background: white;
+    background: #ffffff;
     display: flex;
     justify-content: center;
     align-items: center;
@@ -331,33 +697,56 @@ nav.scrolled .logo-img {
     transition: opacity 0.6s ease;
 }
 
+.loader-content {
+    position: relative; /* Ez a tartály tartja középen a logót és a kört */
+    width: 200px;
+    height: 200px;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+
 .loader-logo {
-    width: 300px;
-    animation: pulse 2s infinite ease-in-out;
+    width: 80px; 
+    z-index: 2;
+    /* Opcionális: lüktetés a logónak */
+    animation: pulse 2s ease-in-out infinite;
 }
 
 .gold-spinner {
-    width: 130px;
-    height: 130px;
-    border: 3px solid transparent;
-    border-top: 3px solid var(--gold);
-    border-radius: 50%;
     position: absolute;
-    animation: spin 1.5s linear infinite;
+    width: 150px;
+    height: 150px;
+    border: 3px solid rgba(212, 175, 55, 0.1); /* Halvány teljes kör alap */
+    border-top: 3px solid #d4af37; /* Erős arany forgó rész */
+    border-radius: 50%;
+    animation: spin 1s linear infinite;
 }
 
-@keyframes spin { 100% { transform: rotate(360deg); } }
-@keyframes pulse { 0%, 100% { transform: scale(0.9); } 50% { transform: scale(1.1); } }
+/* CSAK EZ AZ EGY SPIN MARADJON! */
+@keyframes spin {
+    from { transform: rotate(0deg); }
+    to { transform: rotate(360deg); }
+}
 
-/* Alapállapot: picit lejjebb és átlátszó */
+@keyframes pulse {
+    0%, 100% { transform: scale(0.95); opacity: 0.8; }
+    50% { transform: scale(1.05); opacity: 1; }
+}
+
+.loader-fade {
+    opacity: 0;
+    pointer-events: none;
+}
+
+/* REVEAL RÉSZ (Változatlan, ez így jó) */
 .reveal {
     opacity: 0;
     transform: translateY(50px);
     transition: all 1.2s cubic-bezier(0.17, 0.67, 0.83, 0.67);
-    visibility: hidden; /* Biztosra megyünk */
+    visibility: hidden;
 }
 
-/* Aktív állapot: amikor a JS rárakja az .active osztályt */
 .reveal.active {
     opacity: 1;
     transform: translateY(0);
@@ -367,22 +756,117 @@ nav.scrolled .logo-img {
    10. MOBIL RESET
    ========================================= */
 @media (max-width: 768px) {
-    section { padding: 60px 5%; }
-    
+    section { padding: 60px 8%; }
+
+    h1 { font-size: 2.5rem !important; }
+    h2 { font-size: 1.8rem !important; letter-spacing: 3px; }
+
+    /* Navigációs linkek mobil nézete */
     .nav-links {
         position: fixed;
         right: 0;
         top: 0;
         height: 100vh;
-        width: 75%;
-        background: white;
+        width: 80%; /* Kicsit szélesebb a kényelemért */
+        background: rgba(255, 255, 255, 0.98); /* Tiszta fehér üveg hatás */
+        backdrop-filter: blur(20px);
         flex-direction: column;
         justify-content: center;
+        gap: 40px;
         transform: translateX(100%);
-        transition: 0.5s ease-in;
+        transition: transform 0.6s cubic-bezier(0.77, 0.2, 0.05, 1);
+        box-shadow: -10px 0 30px rgba(0,0,0,0.05);
+        z-index: 999;
     }
 
     .nav-active { transform: translateX(0); }
-    .burger { display: block; cursor: pointer; }
-    .burger div { width: 25px; height: 3px; background: var(--gold); margin: 5px; }
+
+    /* Burger ikon stílusa */
+    .burger {
+        display: block;
+        cursor: pointer;
+        z-index: 1001;
+    }
+
+    .burger div {
+        width: 28px;
+        height: 2px; /* Vékonyabb, elegánsabb vonalak */
+        background: var(--gold);
+        margin: 6px;
+        transition: all 0.3s ease;
+    }
+
+    /* Burger animáció X alakba (opcionális JS-hez) */
+    .toggle .line1 { transform: rotate(-45deg) translate(-5px, 6px); }
+    .toggle .line2 { opacity: 0; }
+    .toggle .line3 { transform: rotate(45deg) translate(-5px, -6px); }
+}
+/* =========================================
+   11. FOGLALÁSI OLDAL (BOOKING)
+   ========================================= */
+.booking-form {
+    display: flex;
+    flex-direction: column;
+    gap: 25px;
+    width: 100%;
+    max-width: 600px;
+    margin: 0 auto;
+}
+
+.input-group {
+    text-align: left;
+    display: flex;
+    flex-direction: column;
+    gap: 8px;
+}
+
+.input-group label {
+    font-size: 0.85rem;
+    text-transform: uppercase;
+    letter-spacing: 1px;
+    color: var(--gold);
+    font-weight: 600;
+    margin-left: 5px;
+}
+
+/* Mezők alapstílusa */
+.input-style {
+    width: 100%;
+    padding: 16px 20px;
+    border: 1px solid rgba(212, 175, 55, 0.2);
+    border-radius: 12px;
+    background: white;
+    font-family: 'Montserrat', sans-serif;
+    font-size: 1rem;
+    color: var(--dark-text);
+    transition: all 0.4s cubic-bezier(0.165, 0.84, 0.44, 1);
+}
+
+.input-style:focus {
+    border-color: var(--gold);
+    box-shadow: 0 10px 25px rgba(212, 175, 55, 0.1);
+    transform: translateY(-2px);
+    outline: none;
+}
+
+/* Szövegdoboz és Select extrák */
+textarea.input-style {
+    height: 140px;
+    resize: none;
+}
+
+select.input-style {
+    cursor: pointer;
+    background-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='16' height='16' viewBox='0 0 24 24' fill='none' stroke='%23d4af37' stroke-width='2' stroke-linecap='round' stroke-linejoin='round'%3E%3Cpath d='M6 9l6 6 6-6'/%3E%3C/svg%3E");
+    background-repeat: no-repeat;
+    background-position: right 20px center;
+    padding-right: 50px;
+}
+
+/* Mobil igazítás az űrlaphoz */
+@media (max-width: 480px) {
+    .booking-form .cta-button {
+        width: 100%;
+        max-width: none;
+    }
 }

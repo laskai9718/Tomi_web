@@ -1,30 +1,4 @@
-// 1. GLOBÁLIS 3D ÉS PARALLAX MOZGÁS
-document.addEventListener("mousemove", (e) => {
-    const x = (window.innerWidth / 2 - e.clientX) / 50;
-    const y = (window.innerHeight / 2 - e.clientY) / 50;
 
-    // A fixált márvány háttér mozgatása (lassú, mély mozgás)
-    const bg = document.querySelector(".fixed-3d-bg");
-    if (bg) {
-        bg.style.transform = `translate3d(${x}px, ${y}px, -100px) scale(1.2)`;
-    }
-
-    // A hero tartalom dőlése (intenzívebb 3D hatás)
-    const hero = document.querySelector(".hero-content");
-    if (hero) {
-        hero.style.transform = `rotateY(${x * -0.5}deg) rotateX(${y * 0.5}deg) translateZ(50px)`;
-    }
-
-    // Az összes kártya és üveg-hatású elem finom dőlése az egérre
-    const glassElements = document.querySelectorAll(".glass-effect");
-    glassElements.forEach(el => {
-        const rect = el.getBoundingClientRect();
-        // Csak akkor animálunk, ha az elem látható a képernyőn (teljesítmény optimalizálás)
-        if (rect.top < window.innerHeight && rect.bottom > 0) {
-            el.style.transform = `perspective(1000px) rotateX(${y * 0.1}deg) rotateY(${x * -0.1}deg)`;
-        }
-    });
-});
 
 // 2. BEÚSZÁS (REVEAL) LOGIKA
 function reveal() {
